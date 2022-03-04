@@ -10,3 +10,4 @@ youtube-dl
 olefile
 motor
 pymongo
+dnspython
