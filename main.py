@@ -10,7 +10,7 @@ from pyrogram import Client, filters
 from asyncio import TimeoutError
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
-from database.database import db
+from plugins.database.database import db
 from translation import Translation
 
 async def OpenSettings(event: Message, user_id: int):
