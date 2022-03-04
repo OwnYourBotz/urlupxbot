@@ -11,3 +11,4 @@ olefile
 motor
 pymongo
 dnspython
+psutil
