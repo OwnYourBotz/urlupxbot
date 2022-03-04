@@ -7,7 +7,23 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+import os
+import time
+import psutil
+import shutil
+import string
+import asyncio
+from pyrogram import Client, filters
+from asyncio import TimeoutError
+from pyrogram.errors import MessageNotModified
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
 
+from translation import Translation
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from plugins.database.add import add_user_to_database
+
+from plugins.callbacks import *
 import os
 import sqlite3
 
@@ -36,3 +52,16 @@ async def start(bot, update):
         disable_web_page_preview=True,
         reply_markup=Translation.START_BUTTONS
     )
+
+
+
+
+
+
+@Client.on_message(filters.private & filters.command("settings"))
+async def settings_handler(bot: Client, event: Message):
+
+    editable = await event.reply_text(
+        text="**👀 Processing...**"
+    )
+    await OpenSettings(editable, user_id=event.from_user.id)
