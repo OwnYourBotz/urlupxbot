@@ -8,13 +8,13 @@ if bool(os.environ.get("WEBHOOK", False)):
 else:
     from config import Config
 
-
+import asynsio
 from plugins.youtube_dl_button import youtube_dl_call_back
 from plugins.dl_button import ddl_call_back
 from translation import Translation
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, ForceReply
-
+from pyrogram.errors import MessageNotModified
 
 @Client.on_callback_query()
 async def button(bot, update):
