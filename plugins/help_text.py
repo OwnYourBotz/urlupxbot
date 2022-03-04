@@ -19,7 +19,7 @@ else:
 
 # the Strings used for this "thing"
 from translation import Translation
-
+from main import *
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
@@ -75,3 +75,13 @@ async def upgrade(bot, update):
         reply_to_message_id=update.message_id,
         disable_web_page_preview=True
     )
+
+
+
+@pyrogram.on_message(pyrogram.filters.private & filters.command("settings"))
+async def settings_handler(bot: Client, event: Message):
+
+    editable = await event.reply_text(
+        text="**👀 Processing...**"
+    )
+    await OpenSettings(editable, user_id=event.from_user.id
