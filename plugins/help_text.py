@@ -78,7 +78,7 @@ async def upgrade(bot, update):
 
 
 
-@pyrogram.on_message(pyrogram.filters.private & filters.command("settings"))
+@pyrogram.Client.on_message(pyrogram.filters.private & filters.command("settings"))
 async def settings_handler(bot: Client, event: Message):
 
     editable = await event.reply_text(
