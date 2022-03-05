@@ -14,6 +14,7 @@ from datetime import datetime
 from sample_config import Config
 from translation import Translation
 from plugins.custom_thumbnail import *
+from plugins.database.database import db
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
 from hachoir.metadata import extractMetadata
@@ -145,6 +146,41 @@ async def ddl_call_back(bot, update):
                     width=width,
                     height=height,
                     supports_streaming=True,
+                    thumb=thumb_image_path,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        update.message,
+                        start_time
+                    )
+                )
+            if tg_send_type == "audio":
+                duration = await Mdata03(download_directory)
+                thumbnail = await Gthumb01(bot, update)
+                await bot.send_audio(
+                    chat_id=update.message.chat.id,
+                    audio=download_directory,
+                    caption=description,
+                    parse_mode="HTML",
+                    duration=duration,
+                    thumb=thumbnail,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        update.message,
+                        start_time
+                    )
+                )
+            elif tg_send_type == "vm":
+                width, duration = await Mdata02(download_directory)
+                thumbnail = await Gthumb02(bot, update, duration, download_directory)
+                await bot.send_video_note(
+                    chat_id=update.message.chat.id,
+                    video_note=download_directory,
+                    duration=duration,
+                    length=width,
                     thumb=thumb_image_path,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
