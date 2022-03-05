@@ -145,12 +145,7 @@ async def callback_handlers(bot: Client, cb: CallbackQuery):
         await db.set_thumbnail(cb.from_user.id, thumbnail=None)
         await cb.answer("Successfully Removed Custom Thumbnail!", show_alert=True)
         await OpenSettings(cb.message, user_id=cb.from_user.id)
-                )
-        except TimeoutError:
-            await cb.message.edit(
-                text="**🤬 I can't wait more.... BYE 👋🏻**",
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🔚 Go Back", callback_data="openSettings")]])
-            )
+
 
 
 
