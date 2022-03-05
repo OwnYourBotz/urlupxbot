@@ -8,7 +8,7 @@ from pyrogram import filters
 from asyncio import TimeoutError
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
-from pyrogram import Client as Tellybots
+from pyrogram import Client
 from translation import Translation 
 from plugins.settings.settings import OpenSettings
 from plugins.database.access import db
@@ -18,7 +18,7 @@ from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 
 
-@Tellybots.on_message(filters.private & filters.command("start"))
+@Client.on_message(filters.private & filters.command("start"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await add_user_to_database(bot, event)
     if not cb:
@@ -35,7 +35,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
                  disable_web_page_preview=True
                      )
             
-@Tellybots.on_message(filters.private & filters.command("help"))
+@Client.on_message(filters.private & filters.command("help"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await add_user_to_database(bot, event)
     if not cb:
@@ -52,7 +52,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
                  disable_web_page_preview=True
                      )
             
-@Tellybots.on_message(filters.private & filters.command("about"))
+@Client.on_message(filters.private & filters.command("about"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await add_user_to_database(bot, event)
     if not cb:
@@ -76,7 +76,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
             #except:
                 #pass
 
-@Tellybots.on_message(filters.private & filters.command("settings"))
+@Client.on_message(filters.private & filters.command("settings"))
 async def settings_handler(bot: Client, event: Message):
     await add_user_to_database(bot, event)
     editable = await event.reply_text(
@@ -86,7 +86,7 @@ async def settings_handler(bot: Client, event: Message):
 
 
 
-@Tellybots.on_callback_query()
+@Client.on_callback_query()
 async def callback_handlers(bot: Client, cb: CallbackQuery):
     if "closeMeh" in cb.data:
         await cb.message.delete(True)
