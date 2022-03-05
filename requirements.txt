@@ -12,4 +12,8 @@ motor
 pymongo
 dnspython
 psutil
-asynsio
+loggers
+filetype
+tldextract
+aiofiles
+pyromod
