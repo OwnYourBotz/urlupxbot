@@ -2,7 +2,7 @@ import os
 
 from sample_config import Config
 
-
+from plugins.settings.settings import OpenSettings
 from translation import Translation
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -70,7 +70,7 @@ async def button(bot, update):
             await db.set_upload_as_doc(update.from_user.id, False)
         else:
             await db.set_upload_as_doc(update.from_user.id, True)
-        await show_settings(update.message)
+        await OpenSettings(update.message)
     else:
         await update.message.delete()
 
