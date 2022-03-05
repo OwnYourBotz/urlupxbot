@@ -113,7 +113,7 @@ async def youtube_dl_call_back(bot, update):
     command_to_exec = []
     if tg_send_type == "audio":
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--prefer-ffmpeg",
@@ -129,7 +129,7 @@ async def youtube_dl_call_back(bot, update):
         if "youtu" in youtube_dl_url:
             minus_f_format = youtube_dl_format + "+bestaudio"
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
@@ -245,78 +245,7 @@ async def youtube_dl_call_back(bot, update):
                 thumb_image_path = None
             start_time = time.time()
             # try to upload file
-            if tg_send_type == "audio":
-                await bot.send_audio(
-                    chat_id=update.message.chat.id,
-                    audio=download_directory,
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
-                    # performer=response_json["uploader"],
-                    # title=response_json["title"],
-                    # reply_markup=reply_markup,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "file":
-                await bot.send_document(
-                    chat_id=update.message.chat.id,
-                    document=download_directory,
-                    thumb=thumb_image_path,
-                    caption=description,
-                    parse_mode="HTML",
-                    # reply_markup=reply_markup,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "vm":
-                await bot.send_video_note(
-                    chat_id=update.message.chat.id,
-                    video_note=download_directory,
-                    duration=duration,
-                    length=width,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "video":
-                await bot.send_video(
-                    chat_id=update.message.chat.id,
-                    video=download_directory,
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
-                    width=width,
-                    height=height,
-                    supports_streaming=True,
-                    # reply_markup=reply_markup,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            else:
-                logger.info("Did this happen? :\\")
+            gger.info("Did this happen? :\\")
             end_two = datetime.now()
             time_taken_for_upload = (end_two - end_one).seconds
             #
