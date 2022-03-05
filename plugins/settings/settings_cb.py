@@ -11,9 +11,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from pyrogram import Client
 from translation import Translation 
 from plugins.settings.settings import OpenSettings
-from plugins.database.add import db
+from plugins.database.database import db
 from pyrogram import types
-from plugins.database.adduser import add_user_to_database
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 
