@@ -15,7 +15,7 @@ from plugins.dl_button import ddl_call_back
 from translation import Translation
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, ForceReply
-from plugins.database.database import db
+from plugins.database.access import db
 import asyncio
 import time
 import psutil
