@@ -30,12 +30,4 @@ async def start(bot, update):
         reply_markup=Translation.START_BUTTONS
     )
 
-@Client.on_message(filters.private & filters.command("settings"))
-async def settings_handler(bot: Client, event: Message):
-    if not event.from_user:
-        return await event.reply_text("I don't know about you sar :(")
-    await add_user_to_database(bot, event)
-    editable = await event.reply_text(
-        text="**👀 Processing...**"
-    )
-    await OpenSettings(editable, user_id=event.from_user.id)
+
