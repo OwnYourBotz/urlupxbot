@@ -43,6 +43,28 @@ async def button(bot, update):
                                    types.InlineKeyboardButton("Delete Thumbnail",
                                                               callback_data="deleteThumbnail")
                                ]]))
+    elif update.data == "triggerThumbnail":
+        thumbnail = await db.get_thumbnail(update.from_user.id)
+        if thumbnail is None:
+            await update.answer("No Thumbnail Found... ", show_alert=True)
+        else:
+            await update.answer("Trying to send your thumbnail...", show_alert=True)
+            try:
+                await bot.send_photo(
+                    chat_id=update.message.chat.id,
+                    photo=thumbnail,
+                    text=f"**👆🏻 Your Custom Thumbnail...\n© @AVBotz**",
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🗑️ Delete Thumbnail", callback_data="deleteThumbnail")]])
+                )
+            except Exception as err:
+                try:
+                    await bot.send_message(
+                        chat_id=update.message.chat.id,
+                        text=f"**😐 Unable to send Thumbnail! Got an unexpected Error**",
+                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ Close", callback_data="close")],[InlineKeyboardButton("📮 Report issue", url="https://t.me/AVBotz_Support")]])
+                    )
+                except:
+                    pass
     elif update.data == "deleteThumbnail":
         await db.set_thumbnail(update.from_user.id, None)
         await update.answer("Okay, I deleted your custom thumbnail. Now I will apply default thumbnail.", show_alert=True)
