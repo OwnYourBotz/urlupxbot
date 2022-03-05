@@ -159,10 +159,6 @@ async def echo(bot, update):
                         InlineKeyboardButton(
                             " Vɪᴅᴇᴏ " + format_string + " " + approx_file_size + " ",
                             callback_data=(cb_string_video).encode("UTF-8")
-                        ),
-                        InlineKeyboardButton(
-                            " Fɪʟᴇ " + format_ext + " " + approx_file_size + " ",
-                            callback_data=(cb_string_file).encode("UTF-8")
                         )
                     ]
                     """if duration is not None:
@@ -179,16 +175,10 @@ async def echo(bot, update):
                     # special weird case :\
                     ikeyboard = [
                         InlineKeyboardButton(
-                            " Vɪᴅᴇᴏ [" +
+                            " 🎥 [" +
                             "] ( " +
                             approx_file_size + " )",
                             callback_data=(cb_string_video).encode("UTF-8")
-                        ),
-                        InlineKeyboardButton(
-                            " Fɪʟᴇ [" +
-                            "] ( " +
-                            approx_file_size + " )",
-                            callback_data=(cb_string_file).encode("UTF-8")
                         )
                     ]
                 inline_keyboard.append(ikeyboard)
@@ -221,10 +211,6 @@ async def echo(bot, update):
                 InlineKeyboardButton(
                     "SVideo",
                     callback_data=(cb_string_video).encode("UTF-8")
-                ),
-                InlineKeyboardButton(
-                    "DFile",
-                    callback_data=(cb_string_file).encode("UTF-8")
                 )
             ])
             cb_string_file = "{}={}={}".format(
@@ -235,10 +221,6 @@ async def echo(bot, update):
                 InlineKeyboardButton(
                     "video",
                     callback_data=(cb_string_video).encode("UTF-8")
-                ),
-                InlineKeyboardButton(
-                    "file",
-                    callback_data=(cb_string_file).encode("UTF-8")
                 )
             ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
