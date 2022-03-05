@@ -30,7 +30,7 @@ async def button(bot, update):
         )
     elif update.data == "OpenSettings":
         await update.answer()
-        await show_settings(update.message)
+        await OpenSettings(update.message)
     elif update.data == "showThumbnail":
         thumbnail = await db.get_thumbnail(update.from_user.id)
         if not thumbnail:
@@ -71,6 +71,8 @@ async def button(bot, update):
         else:
             await db.set_upload_as_doc(update.from_user.id, True)
         await OpenSettings(update.message)
-    else:
-        await update.message.delete()
+    elif "close" in update.data:
+        await update.message.delete(True)
+        await update.message.reply_to_message.delete()
+    
 
