@@ -1,9 +1,6 @@
 @RenameBot.on_message(filters.private & filters.command("start"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
-    FSub = await ForceSub(bot, event)
-    if FSub == 400:
-        return
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
@@ -21,9 +18,6 @@ async def start_handler(bot: Client, event: Message, cb=False):
 @RenameBot.on_message(filters.private & filters.command("help"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
-    FSub = await ForceSub(bot, event)
-    if FSub == 400:
-        return
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
@@ -41,9 +35,6 @@ async def start_handler(bot: Client, event: Message, cb=False):
 @RenameBot.on_message(filters.private & filters.command("about"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
-    FSub = await ForceSub(bot, event)
-    if FSub == 400:
-        return
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
