@@ -18,20 +18,14 @@ async def OpenSettings(m: "types.Message"):
     buttons_markup = [
         [types.InlineKeyboardButton(f"Upload as {'🎥 Video' if upload_as_doc else '🗃️ File'}",
                                     callback_data="triggerUploadMode")],
-        [types.InlineKeyboardButton(f"Apply Caption {'✅' if apply_caption else '❌'}",
-                                    callback_data="triggerApplyCaption")],
-        [types.InlineKeyboardButton(f"Apply Default Caption {'❌' if caption else '✅'}",
-                                    callback_data="triggerApplyDefaultCaption")],
-        [types.InlineKeyboardButton("Set Custom Caption",
-                                    callback_data="setCustomCaption")],
-        [types.InlineKeyboardButton(f"{'Change' if thumbnail else 'Set'} Thumbnail",
+        [types.InlineKeyboardButton(f"{'Change' if thumbnail else '🌃 Set'} Thumbnail",
                                     callback_data="setThumbnail")]
     ]
     if thumbnail:
-        buttons_markup.append([types.InlineKeyboardButton("Show Thumbnail",
+        buttons_markup.append([types.InlineKeyboardButton("🌆 Show Thumbnail",
                                                           callback_data="showThumbnail")])
-    buttons_markup.append([types.InlineKeyboardButton("Close Message",
-                                                      callback_data="closeMessage")])
+    buttons_markup.append([types.InlineKeyboardButton("♨️ Close",
+                                                      callback_data="close")])
 
     try:
         await m.edit(
