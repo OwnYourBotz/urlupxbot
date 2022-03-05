@@ -27,7 +27,6 @@ from helper_funcs.ran_text import random_char
 
 @Clinton.on_message(filters.private & filters.regex(pattern=".*https://.*"))
 async def echo(bot, update):
-    await add_user_to_database(bot, update)
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
