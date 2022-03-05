@@ -16,7 +16,7 @@ import shutil
 import time
 from datetime import datetime
 # the secret configuration specific things
-from config import Config
+from sample_config import Config
 # the Strings used for this "thing"
 from translation import Translation
 from plugins.custom_thumbnail import *
@@ -24,7 +24,7 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InputMediaPhoto
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 # https://stackoverflow.com/a/37631799/4723940
-from database.access import clinton
+
 from PIL import Image
 from plugins.database.database import db
 
