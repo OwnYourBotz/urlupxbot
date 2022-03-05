@@ -8,6 +8,25 @@ from translation import Translation
 from pyrogram import Client, types
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.database import db
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+import json
+import math
+import shutil
+import subprocess
+import time
+
+
+
+from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+
+from hachoir.metadata import extractMetadata
+from hachoir.parser import createParser
+# https://stackoverflow.com/a/37631799/4723940
+from PIL import Image
 
 @Client.on_callback_query()
 async def button(bot, update):
