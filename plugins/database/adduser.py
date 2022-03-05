@@ -1,7 +1,7 @@
 # (c) @AbirHasan2005
 
 from sample_config import Config
-from database.database.access_db import db
+from database.database.access import db
 from pyrogram import Client
 from pyrogram.types import Message
 
