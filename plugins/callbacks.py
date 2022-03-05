@@ -71,4 +71,6 @@ async def button(bot, update):
         else:
             await db.set_upload_as_doc(update.from_user.id, True)
         await show_settings(update.message)
+    else:
+        await update.message.delete()
 
