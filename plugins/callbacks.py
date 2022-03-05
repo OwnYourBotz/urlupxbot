@@ -15,7 +15,7 @@ from plugins.dl_button import ddl_call_back
 from translation import Translation
 from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, CallbackQuery, ForceReply
-
+from plugins.database.database import db
 
 @Client.on_callback_query()
 async def button(bot, update):
