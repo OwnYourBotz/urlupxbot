@@ -1,6 +1,6 @@
 @Tellybots.on_message(filters.private & filters.command("start"))
 async def start_handler(bot: Client, event: Message, cb=False):
-    await AddUserToDatabase(bot, event)
+    await add_user_to_database(bot, event)
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
@@ -17,7 +17,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
             
 @Tellybots.on_message(filters.private & filters.command("help"))
 async def start_handler(bot: Client, event: Message, cb=False):
-    await AddUserToDatabase(bot, event)
+    await add_user_to_database(bot, event)
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
@@ -34,7 +34,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
             
 @Tellybots.on_message(filters.private & filters.command("about"))
 async def start_handler(bot: Client, event: Message, cb=False):
-    await AddUserToDatabase(bot, event)
+    await add_user_to_database(bot, event)
     if not cb:
         send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
     await send_msg.edit(
@@ -58,7 +58,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
 
 @Tellybots.on_message(filters.private & filters.command("settings"))
 async def settings_handler(bot: Client, event: Message):
-    await AddUserToDatabase(bot, event)
+    await add_user_to_database(bot, event)
     editable = await event.reply_text(
         text="**👀 Processing...**"
     )
