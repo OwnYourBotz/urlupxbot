@@ -58,7 +58,7 @@ async def delete_thumb_handler(bot: Client, event: Message):
     await event.reply_text(
         "**🗑️ Custom Thumbnail Deleted Successfully!**",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⚙ Configure Settings 👀", callback_data="openSettings")]
+            [InlineKeyboardButton("⚙ Configure Settings 👀", callback_data="OpenSettings")]
         ])
     )
 
