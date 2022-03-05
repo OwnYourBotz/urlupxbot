@@ -1,3 +1,23 @@
+import os
+import time
+import psutil
+import shutil
+import string
+import asyncio
+from pyrogram import Client, filters
+from asyncio import TimeoutError
+from pyrogram.errors import MessageNotModified
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
+
+from translation import Translation 
+from plugins.settings.settings import OpenSettings
+from plugins.database.access import db
+
+from plugins.database.adduser import add_user_to_database
+from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+
+
+
 @Tellybots.on_message(filters.private & filters.command("start"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await add_user_to_database(bot, event)
