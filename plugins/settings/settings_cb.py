@@ -1,3 +1,74 @@
+@RenameBot.on_message(filters.private & filters.command("start"))
+async def start_handler(bot: Client, event: Message, cb=False):
+    await AddUserToDatabase(bot, event)
+    FSub = await ForceSub(bot, event)
+    if FSub == 400:
+        return
+    if not cb:
+        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
+    await send_msg.edit(
+      text=f"{Translation.START_TEXT}".format(event.from_user.mention), 
+      reply_markup=Translation.START_BUTTONS, 
+      disable_web_page_preview=True
+       )
+    if cb:
+        return await event.message.edit(
+                 text=f"{Translation.START_TEXT}".format(event.from_user.mention),
+                 reply_markup=Translation.START_BUTTONS,
+                 disable_web_page_preview=True
+                     )
+            
+@RenameBot.on_message(filters.private & filters.command("help"))
+async def start_handler(bot: Client, event: Message, cb=False):
+    await AddUserToDatabase(bot, event)
+    FSub = await ForceSub(bot, event)
+    if FSub == 400:
+        return
+    if not cb:
+        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
+    await send_msg.edit(
+      text=f"{Translation.HELP_TEXT}".format(event.from_user.mention), 
+      reply_markup=Translation.HELP_BUTTONS, 
+      disable_web_page_preview=True
+       )
+    if cb:
+        return await event.message.edit(
+                 text=f"{Translation.HELP_TEXT}".format(event.from_user.mention),
+                 reply_markup=Translation.HELP_BUTTONS,
+                 disable_web_page_preview=True
+                     )
+            
+@RenameBot.on_message(filters.private & filters.command("about"))
+async def start_handler(bot: Client, event: Message, cb=False):
+    await AddUserToDatabase(bot, event)
+    FSub = await ForceSub(bot, event)
+    if FSub == 400:
+        return
+    if not cb:
+        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
+    await send_msg.edit(
+      text=f"{Config.ABOUT_TEXT}", 
+      reply_markup=ABOUT_BUTTONS, 
+      disable_web_page_preview=True
+       )
+    if cb:
+        return await event.message.edit(
+                 text=f"{Config.ABOUT_TEXT}",
+                 reply_markup=ABOUT_BUTTONS,
+                 disable_web_page_preview=True
+                     )
+
+
+            #try:
+                #os.remove(download_location)
+              #  os.remove(thumb_image_path)
+            #except:
+                #pass
+
+
+
+
+
 @Tellybots.on_callback_query()
 async def callback_handlers(bot: Client, cb: CallbackQuery):
     if "closeMeh" in cb.data:
