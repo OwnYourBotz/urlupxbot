@@ -67,7 +67,7 @@ Pᴏᴡᴇʀᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](https://telegram.me/TellyBots)
         InlineKeyboardButton(' sᴜᴘᴘᴏʀᴛ', url='https://telegram.me/Tellybots')
         ],[
         InlineKeyboardButton(' ʜᴇʟᴘ', callback_data='help'),
-        InlineKeyboardButton(' Settings', callback_data='Opensettings')
+        InlineKeyboardButton(' Settings', callback_data='OpenSettings')
         ],[
         InlineKeyboardButton(' ᴄʟᴏsᴇ', callback_data='close')
         ]]
