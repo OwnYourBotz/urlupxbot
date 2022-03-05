@@ -1,9 +1,8 @@
 
-import asyncio
-from plugins.database.access import db
-from pyrogram.errors import FloodWait, MessageNotModified
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+import asyncio
+from pyrogram import types, errors
+from sample_config import Config
 
 
 async def OpenSettings(m: "types.Message"):
