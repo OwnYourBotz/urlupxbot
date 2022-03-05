@@ -120,8 +120,6 @@ async def ddl_call_back(bot, update):
             start_time = time.time()
             if (await db.get_upload_as_doc(update.from_user.id)) is False:
                 thumbnail = await Gthumb01(bot, update)
-        
-                  thumb_image_path = await Gthumb01(bot, update)
                   await bot.send_document(
                     chat_id=update.message.chat.id,
                     document=download_directory,
