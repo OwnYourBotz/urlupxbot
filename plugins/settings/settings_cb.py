@@ -4,11 +4,11 @@ import psutil
 import shutil
 import string
 import asyncio
-from pyrogram import Client, filters
+from pyrogram import filters
 from asyncio import TimeoutError
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
-
+from pyrogram import Client as Tellybots
 from translation import Translation 
 from plugins.settings.settings import OpenSettings
 from plugins.database.access import db
