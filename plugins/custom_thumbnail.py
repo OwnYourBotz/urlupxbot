@@ -36,7 +36,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from plugins.database.database import db
 from sample_config import Config
 from plugins.database.add import add_user_to_database
-from main import *
+from plugins.settings.settings import *
 
 
 @Client.on_message(filters.private & filters.photo & ~filters.edited)
