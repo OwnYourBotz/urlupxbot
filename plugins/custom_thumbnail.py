@@ -23,7 +23,6 @@ from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
-from plugins.database.database import db
 from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 import psutil
 import shutil
