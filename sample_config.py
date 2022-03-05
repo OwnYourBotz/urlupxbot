@@ -37,3 +37,4 @@ class Config(object):
     # watermark file
     DEF_WATER_MARK_FILE = ""
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
+    SESSION_NAME = os.environ.get("SESSION_NAME", "Rename-Bot-0")
