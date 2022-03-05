@@ -1,6 +1,6 @@
 
 import asyncio
-from plugins.database.database import db
+from plugins.database.access import db
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
