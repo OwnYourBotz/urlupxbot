@@ -11,149 +11,57 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, 
 from pyrogram import Client
 from translation import Translation 
 from plugins.settings.settings import OpenSettings
-from plugins.database.access import db
-
+from plugins.database.add import db
+from pyrogram import types
 from plugins.database.adduser import add_user_to_database
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
 
 
-
-@Client.on_message(filters.private & filters.command("start"))
-async def start_handler(bot: Client, event: Message, cb=False):
-    await add_user_to_database(bot, event)
-    if not cb:
-        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
-    await send_msg.edit(
-      text=f"{Translation.START_TEXT}".format(event.from_user.mention), 
-      reply_markup=Translation.START_BUTTONS, 
-      disable_web_page_preview=True
-       )
-    if cb:
-        return await event.message.edit(
-                 text=f"{Translation.START_TEXT}".format(event.from_user.mention),
-                 reply_markup=Translation.START_BUTTONS,
-                 disable_web_page_preview=True
-                     )
-            
-@Client.on_message(filters.private & filters.command("help"))
-async def start_handler(bot: Client, event: Message, cb=False):
-    await add_user_to_database(bot, event)
-    if not cb:
-        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
-    await send_msg.edit(
-      text=f"{Translation.HELP_TEXT}".format(event.from_user.mention), 
-      reply_markup=Translation.HELP_BUTTONS, 
-      disable_web_page_preview=True
-       )
-    if cb:
-        return await event.message.edit(
-                 text=f"{Translation.HELP_TEXT}".format(event.from_user.mention),
-                 reply_markup=Translation.HELP_BUTTONS,
-                 disable_web_page_preview=True
-                     )
-            
-@Client.on_message(filters.private & filters.command("about"))
-async def start_handler(bot: Client, event: Message, cb=False):
-    await add_user_to_database(bot, event)
-    if not cb:
-        send_msg = await event.reply_text("**👀 Processing......**", quote=True)    
-    await send_msg.edit(
-      text=f"{Config.ABOUT_TEXT}", 
-      reply_markup=ABOUT_BUTTONS, 
-      disable_web_page_preview=True
-       )
-    if cb:
-        return await event.message.edit(
-                 text=f"{Config.ABOUT_TEXT}",
-                 reply_markup=ABOUT_BUTTONS,
-                 disable_web_page_preview=True
-                     )
-
-
-            #try:
-                #os.remove(download_location)
-              #  os.remove(thumb_image_path)
-            #except:
-                #pass
-
-@Client.on_message(filters.private & filters.command("settings"))
-async def settings_handler(bot: Client, event: Message):
-    await add_user_to_database(bot, event)
-    editable = await event.reply_text(
-        text="**👀 Processing...**"
-    )
-    await OpenSettings(editable, user_id=event.from_user.id)
-
-
-
 @Client.on_callback_query()
-async def callback_handlers(bot: Client, cb: CallbackQuery):
-    if "closeMeh" in cb.data:
-        await cb.message.delete(True)
-        await cb.message.reply_to_message.delete()
-    elif "close" in cb.data:
-        await cb.message.delete(True)
-        await cb.message.reply_to_message.delete()
-    elif "help" in cb.data:
-        await cb.edit_message_text(
-              text = f"{Translation.HELP_TEXT}".format(cb.from_user.mention),
-              disable_web_page_preview = True,
-              reply_markup = Translation.HELP_BUTTONS)
-    elif "home" in cb.data:
-        await cb.edit_message_text(
-              text = f"{Translation.START_TEXT}".format(cb.from_user.mention),
-              disable_web_page_preview = True,
-              reply_markup = Translation.START_BUTTONS)
-    elif "about" in cb.data:
-        await cb.edit_message_text(
-              text = f"{Translation.ABOUT_TEXT}".format(cb.from_user.mention),
-              disable_web_page_preview = True,
-              reply_markup = Translation.ABOUT_BUTTONS)
-    elif "openSettings" in cb.data:
-        await OpenSettings(cb.message, user_id=cb.from_user.id)
-    elif "triggerUploadMode" in cb.data:
-        upload_as_doc = await db.get_upload_as_doc(cb.from_user.id)
-        if upload_as_doc is True:
-            await db.set_upload_as_doc(cb.from_user.id, upload_as_doc=False)
-        else:
-            await db.set_upload_as_doc(cb.from_user.id, upload_as_doc=True)
-        await OpenSettings(cb.message, user_id=cb.from_user.id)
-
-    elif "triggerThumbnail" in cb.data:
+async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
+    if cb.data == "OpenSettings":
+        await cb.answer()
+        await show_settings(cb.message)
+    elif cb.data == "showThumbnail":
         thumbnail = await db.get_thumbnail(cb.from_user.id)
-        if thumbnail is None:
-            await cb.answer("No Thumbnail Found... ", show_alert=True)
+        if not thumbnail:
+            await cb.answer("You didn't set any custom thumbnail!", show_alert=True)
         else:
-            await cb.answer("Trying to send your thumbnail...", show_alert=True)
-            try:
-                await bot.send_photo(
-                    chat_id=cb.message.chat.id,
-                    photo=thumbnail,
-                    text=f"**👆🏻 Your Custom Thumbnail...\n© @AVBotz**",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🗑️ Delete Thumbnail", callback_data="deleteThumbnail")]])
-                )
-            except Exception as err:
-                try:
-                    await bot.send_message(
-                        chat_id=cb.message.chat.id,
-                        text=f"**😐 Unable to send Thumbnail! Got an unexpected Error**",
-                        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("⛔ Close", callback_data="closeMeh")],[InlineKeyboardButton("📮 Report issue", url="https://t.me/AVBotz_Support")]])
-                    )
-                except:
-                    pass
-    elif "deleteThumbnail" in cb.data:
-        await db.set_thumbnail(cb.from_user.id, thumbnail=None)
-        await cb.answer("Successfully Removed Custom Thumbnail!", show_alert=True)
-        await OpenSettings(cb.message, user_id=cb.from_user.id)
+            await cb.answer()
+            await c.send_photo(cb.message.chat.id, thumbnail, "Custom Thumbnail",
+                               reply_markup=types.InlineKeyboardMarkup([[
+                                   types.InlineKeyboardButton("Delete Thumbnail",
+                                                              callback_data="deleteThumbnail")
+                               ]]))
+    elif cb.data == "deleteThumbnail":
+        await db.set_thumbnail(cb.from_user.id, None)
+        await cb.answer("Okay, I deleted your custom thumbnail. Now I will apply default thumbnail.", show_alert=True)
+        await cb.message.delete(True)
+    elif cb.data == "setThumbnail":
+        await cb.answer()
+        await cb.message.edit("Send me any photo to set that as custom thumbnail.\n\n"
+                              "Press /cancel to cancel process.")
+        from_user_thumb: "types.Message" = await c.listen(cb.message.chat.id)
+        if not from_user_thumb.photo:
+            await cb.message.edit("Process Cancelled!")
+            return await from_user_thumb.continue_propagation()
+        else:
+            await db.set_thumbnail(cb.from_user.id, from_user_thumb.photo.file_id)
+            await cb.message.edit("Okay!\n"
+                                  "Now I will apply this thumbnail to next uploads.",
+                                  reply_markup=types.InlineKeyboardMarkup(
+                                      [[types.InlineKeyboardButton("Show Settings",
+                                                                   callback_data="OpenSettings")]]
+                                  ))
 
-
-
-
-
-
-
-
-
-
-
+    elif cb.data == "triggerUploadMode":
+        await cb.answer()
+        upload_as_doc = await db.get_upload_as_doc(cb.from_user.id)
+        if upload_as_doc:
+            await db.set_upload_as_doc(cb.from_user.id, False)
+        else:
+            await db.set_upload_as_doc(cb.from_user.id, True)
+        await show_settings(cb.message)
+    elif cb.data == "closeMessage":
+        await cb.message.delete(True)
 
