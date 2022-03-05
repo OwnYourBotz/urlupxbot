@@ -117,25 +117,9 @@ async def ddl_call_back(bot, update):
         else:
             # ref: message from @SOURCES_CODES
             start_time = time.time()
-            # try to upload file
-            if tg_send_type == "audio":
-                duration = await Mdata03(download_directory)
-                thumb_image_path = await Gthumb01(bot, update)
-                await bot.send_audio(
-                    chat_id=update.message.chat.id,
-                    audio=download_directory,
-                    caption=description,
-                    duration=duration,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "file":
+            if (await db.get_upload_as_doc(update.from_user.id)) is False:
+                thumbnail = await Gthumb01(bot, update)
+        
                   thumb_image_path = await Gthumb01(bot, update)
                   await bot.send_document(
                     chat_id=update.message.chat.id,
@@ -150,24 +134,7 @@ async def ddl_call_back(bot, update):
                         start_time
                     )
                 )
-            elif tg_send_type == "vm":
-                 width, duration = await Mdata02(download_directory)
-                 thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
-                 await bot.send_video_note(
-                    chat_id=update.message.chat.id,
-                    video_note=download_directory,
-                    duration=duration,
-                    length=width,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "video":
+            else:
                  width, height, duration = await Mdata01(download_directory)
                  thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
                  await bot.send_video(
