@@ -12,3 +12,4 @@ motor
 pymongo
 dnspython
 psutil
+asynsio
