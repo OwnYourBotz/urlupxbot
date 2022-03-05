@@ -39,3 +39,4 @@ class Config(object):
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
     SESSION_NAME = os.environ.get("SESSION_NAME", "Rename-Bot-0")
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", -100))
+    LOGGER = logging
