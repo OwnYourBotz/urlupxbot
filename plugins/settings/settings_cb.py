@@ -1,4 +1,4 @@
-@RenameBot.on_message(filters.private & filters.command("start"))
+@Tellybots.on_message(filters.private & filters.command("start"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
     if not cb:
@@ -15,7 +15,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
                  disable_web_page_preview=True
                      )
             
-@RenameBot.on_message(filters.private & filters.command("help"))
+@Tellybots.on_message(filters.private & filters.command("help"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
     if not cb:
@@ -32,7 +32,7 @@ async def start_handler(bot: Client, event: Message, cb=False):
                  disable_web_page_preview=True
                      )
             
-@RenameBot.on_message(filters.private & filters.command("about"))
+@Tellybots.on_message(filters.private & filters.command("about"))
 async def start_handler(bot: Client, event: Message, cb=False):
     await AddUserToDatabase(bot, event)
     if not cb:
@@ -56,7 +56,13 @@ async def start_handler(bot: Client, event: Message, cb=False):
             #except:
                 #pass
 
-
+@Tellybots.on_message(filters.private & filters.command("settings"))
+async def settings_handler(bot: Client, event: Message):
+    await AddUserToDatabase(bot, event)
+    editable = await event.reply_text(
+        text="**👀 Processing...**"
+    )
+    await OpenSettings(editable, user_id=event.from_user.id)
 
 
 
