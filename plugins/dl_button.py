@@ -123,7 +123,7 @@ async def ddl_call_back(bot, update):
                 await bot.send_document(
                     chat_id=update.message.chat.id,
                     document=download_directory,
-                    thumb=thumb_image_path,
+                    thumb=thumbnail,
                     caption=description,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
@@ -144,7 +144,7 @@ async def ddl_call_back(bot, update):
                     width=width,
                     height=height,
                     supports_streaming=True,
-                    thumb=thumb_image_path,
+                    thumb=thumbnail,
                     reply_to_message_id=update.message.reply_to_message.message_id,
                     progress=progress_for_pyrogram,
                     progress_args=(
