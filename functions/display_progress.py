@@ -1,7 +1,7 @@
 import math
 import time
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from translation import Translation
+from plugins.translation import Translation
 
 
 
