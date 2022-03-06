@@ -1,22 +1,19 @@
 {
   "name": "TG URL Uploader",
-  "description": "Telegram's best Open Source ALL-In-One Multi Purpose RoBot. Create your Fork now.",
+  "description": "Telegram's best Open Source Url Uploader Bot. Create your Fork now.",
   "keywords": [
     "telegram",
     "best",
-    "youtube",
+    "yt-dlp",
     "downloader",
     "open",
     "source",
-    "multi",
-    "purpose",
     "ffmpeg",
     "remote",
     "uploader"
   ],
-  "success_url": "https://telegram.dog/AnyDLBot",
-  "website": "https://github.com/SpEcHiDe/AnyDLBot",
-  "repository": "https://github.com/SpEcHiDe/AnyDLBot",
+  "website": "https://github.com/Tellybots",
+  "repository": "https://github.com/Tellybots",
   "env": {
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
