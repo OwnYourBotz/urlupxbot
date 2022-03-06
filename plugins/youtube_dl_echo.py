@@ -204,7 +204,7 @@ async def echo(bot, update):
                 ])
                 inline_keyboard.append([                 
                     InlineKeyboardButton(
-                        "♨️ ᴄʟᴏsᴇ", callback_data='close')               
+                        "✔️ ᴄʟᴏsᴇ", callback_data='close')               
                 ])
         else:
             format_id = response_json["format_id"]
@@ -275,12 +275,8 @@ async def echo(bot, update):
             "video", "OFL", "ENON")
         inline_keyboard.append([
             InlineKeyboardButton(
-                "SVideo",
+                "🎬",
                 callback_data=(cb_string_video).encode("UTF-8")
-            ),
-            InlineKeyboardButton(
-                "DFile",
-                callback_data=(cb_string_file).encode("UTF-8")
             )
         ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
