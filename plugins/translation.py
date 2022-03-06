@@ -63,37 +63,36 @@ Pᴏᴡᴇʀᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](https://telegram.me/TellyBots)
 
     START_BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton(' ᴜᴘᴅᴀᴛᴇs', url='https://telegram.me/Tellybots'),
-        InlineKeyboardButton(' sᴜᴘᴘᴏʀᴛ', url='https://telegram.me/Tellybots')
+        InlineKeyboardButton('🗜️ sᴇᴛᴛɪɴɢs', callback_data='OpenSettings')
         ],[
-        InlineKeyboardButton(' ʜᴇʟᴘ', callback_data='help'),
-        InlineKeyboardButton('sᴇᴛᴛɪɴɢs', callback_data='OpenSettings')
+        InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help'),
+        InlineKeyboardButton('🚴 ᴀʙᴏᴜᴛ', callback_data='about')
         ],[
-        InlineKeyboardButton(' ᴄʟᴏsᴇ', callback_data='close')
+        InlineKeyboardButton('🗑️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
     HELP_BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton(' ʜᴏᴍᴇ', callback_data='home'),
-        InlineKeyboardButton(' ᴀʙᴏᴜᴛ', callback_data='about')
+        InlineKeyboardButton('🌃 ʜᴏᴍᴇ', callback_data='home'),
+        InlineKeyboardButton('🚴 ᴀʙᴏᴜᴛ', callback_data='about')
         ],[
-        InlineKeyboardButton(' ᴄʟᴏsᴇ', callback_data='close')
+        InlineKeyboardButton('🗑️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
     ABOUT_BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton(' ʜᴏᴍᴇ', callback_data='home'),
-        InlineKeyboardButton(' ʜᴇʟᴘ', callback_data='help')
+        InlineKeyboardButton('🌃 ʜᴏᴍᴇ', callback_data='home'),
+        InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help')
         ],[
-        InlineKeyboardButton(' ᴄʟᴏsᴇ', callback_data='close')
+        InlineKeyboardButton('🗑️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
     BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton(' ʜᴏᴍᴇ', callback_data='home'),
-        InlineKeyboardButton(' ʜᴇʟᴘ', callback_data='help')
+        InlineKeyboardButton('🌃 ʜᴏᴍᴇ', callback_data='home'),
+        InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help')
         ],[
-        InlineKeyboardButton(' ᴄʟᴏsᴇ', callback_data='close')
+        InlineKeyboardButton('🗑️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
 
