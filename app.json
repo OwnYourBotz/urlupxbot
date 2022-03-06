@@ -38,22 +38,20 @@
       "description": "Your Mongodb Url",
       "value": ""
     },
-    "BANNED_USERS": {
-      "description": "Banned Unwanted members..",
-      "value": "",
-      "required": false
+    "LOG_CHANNEL": {
+      "description": "Your Any Own Private Channel ID Where Your Bot As Admin With Full Permission",
+      "value": ""
     },
     "UPDATES_CHANNEL": {
-      "description": "For Force Subscribe. Paste your Update channel USERNAME (without @)..",
-      "value": "",
-      "required": false
+      "description": "For Force Subscribe. Paste your Update channel ID",
+      "value": ""
     },
     "DE": {
       "description": "Add It For M3u8 Link thumbnail and For default thumbnail to be used in the videos. Incase, yt-dlp is unable to find a thumbnail. If Not add M3u8 link Will Not Work",
       "value": "",
       "required": True
     },
-    "": {
+    "CHUNK_SIZE": {
       "description": "chunk size that should be used with requests",
       "value": "128"
     },
