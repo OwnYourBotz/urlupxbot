@@ -86,7 +86,7 @@ async def button(bot, update):
         await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
         await ddl_call_back(bot, update)
-    elif "//" in updata.data:
+    elif "//" in update.data:
         szze, ms_id = cb_data.rsplit('//')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         smze, vtt = 0, 0
