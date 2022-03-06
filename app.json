@@ -46,7 +46,7 @@
       "description": "For Force Subscribe. Paste your Update channel ID",
       "value": ""
     },
-    "DE": {
+    "DEF_THUMB_NAIL_VID_S": {
       "description": "Add It For M3u8 Link thumbnail and For default thumbnail to be used in the videos. Incase, yt-dlp is unable to find a thumbnail. If Not add M3u8 link Will Not Work",
       "value": ""
     },
