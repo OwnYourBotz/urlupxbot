@@ -105,7 +105,7 @@ async def echo(bot, update):
     logger.info(command_to_exec)
     chk = await bot.send_message(
             chat_id=update.chat.id,
-            text=f'Processing Your Link ⌛',
+            text=f'ᴘʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʟɪɴᴋ ⌛',
             disable_web_page_preview=True,
             reply_to_message_id=update.message_id
           )
