@@ -15,7 +15,7 @@ from plugins.translation import Translation
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
 from pyrogram import Client
-
+from functions.forcesub import handle_force_subscribe
 from functions.display_progress import humanbytes
 from functions.help_uploadbot import DownLoadFile
 from functions.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
