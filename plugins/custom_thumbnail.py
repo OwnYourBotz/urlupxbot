@@ -27,7 +27,7 @@ import asyncio
 from asyncio import TimeoutError
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
-
+from functions.forcesub import handle_force_subscribe
 from plugins.database.database import db
 from plugins.config import Config
 from plugins.database.add import add_user_to_database
@@ -45,7 +45,7 @@ async def photo_handler(bot: Client, event: Message):
         return
     editable = await event.reply_text("**👀 Processing...**")
     await db.set_thumbnail(event.from_user.id, thumbnail=event.photo.file_id)
-    await editable.edit("**✅ Custom Thumbnail Saved Successfully!**")
+    await editable.edit("**✅ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ sᴀᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ!!**")
 
 
 @Client.on_message(filters.private & filters.command(["delthumb", "deletethumbnail"]) & ~filters.edited)
@@ -60,9 +60,9 @@ async def delete_thumb_handler(bot: Client, event: Message):
 
     await db.set_thumbnail(event.from_user.id, thumbnail=None)
     await event.reply_text(
-        "**🗑️ Custom Thumbnail Deleted Successfully!**",
+        "**🗑️ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴅᴇʟᴇᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ!!**",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("⚙ Configure Settings 👀", callback_data="OpenSettings")]
+            [InlineKeyboardButton("⚙ ᴄᴏɴғɪɢᴜʀᴇ sᴇᴛᴛɪɴɢs 👀", callback_data="OpenSettings")]
         ])
     )
 
@@ -80,13 +80,13 @@ async def viewthumbnail(bot, update):
         await bot.send_photo(
         chat_id=update.chat.id,
         photo=thumbnail,
-        caption=f"Your current saved thumbnail 🦠",
+        caption=f"ʏᴏᴜʀ ᴄᴜʀʀᴇɴᴛ sᴀᴠᴇᴅ ᴛʜᴜᴍʙɴᴀɪʟ 🦠",
         reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("🗑️ Delete Thumbnail", callback_data="deleteThumbnail")]]
+                    [[InlineKeyboardButton("🗑️ ᴅᴇʟᴇᴛᴇ ᴛʜᴜᴍʙɴᴀɪʟ", callback_data="deleteThumbnail")]]
                 ),
         reply_to_message_id=update.message_id)
     else:
-        await update.reply_text(text=f"No Thumbnail found 🤒")
+        await update.reply_text(text=f"ɴᴏ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏᴜɴᴅ 🤒")
 
 
 async def Gthumb01(bot, update):
