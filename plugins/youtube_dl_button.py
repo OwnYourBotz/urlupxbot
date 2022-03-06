@@ -24,6 +24,7 @@ else:
 
 # the Strings used for this "thing"
 from translation import Translation
+from plugins.custom_thumbnail import *
 
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
