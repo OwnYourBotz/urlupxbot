@@ -81,10 +81,56 @@ async def button(bot, update):
     elif "close" in update.data:
         await update.message.delete(True)
         await update.message.reply_to_message.delete()
+
     elif "|" in update.data:
         await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
         await ddl_call_back(bot, update)
-
+    elif "//" in updata.data:
+        szze, ms_id = cb_data.rsplit('//')
+        download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
+        smze, vtt = 0, 0
+        '''ToStr = ' •• '.join(map(str, os.listdir(download_directory)))
+        await bot.send_message(chat_id = update.message.chat.id, text=ToStr)
+        print(os.listdir(download_directory), "cb_buttons")
+        print('\n\n', cb_data, 'cb_buttons')'''
+        if os.path.isdir(download_directory):
+          lsst=os.listdir(download_directory)
+          try:
+            for vt in lsst:
+              if ".vtt" in vt:
+                vtt+=1
+            for ele in os.scandir(download_directory):
+              smze+=os.path.getsize(ele)
+              siio = humanbytes(int(smze))
+          except Exception as vit:
+            print(vit, "Error Exception vtt")
+            pass
+        if not os.path.isdir(download_directory):
+            siio='This file is not present in the directory!'
+            await update.answer(siio)
+            '''elif:
+            for ele in os.scandir(download_directory):
+                smze+=os.path.getsize(ele)
+            if smze>int(cb_data.split("//")[1])*1.2:
+                await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
+             elif:
+            for ele in os.scandir(download_directory):
+                smze+=os.path.getsize(ele)
+            if smze>int(cb_data.split("//")[1]):
+                await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
+        elif len(lsst)-vtt == 4:
+            await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
+        elif "N/A" in update.data:
+            await update.answer(f'Downloaded: {siio} of {"N/A"}')
+        elif "None" in update.data:
+            await update.answer(f'Downloaded: {siio} of {"N/A"}')
+        else:
+            if int(smze)<int(szze):
+                await update.answer(f'Downloaded: {siio} of {humanbytes(int(szze))}')
+            else:
+                diff = int(smze)-int(szze)
+                print(lsst, "video downloaded successfully")
+                await update.answer(f'Video Downloded Successfully: {humanbytes(int(szze))} \n\n Now Downloading audio: {humanbytes(diff)}', show_alert="True")
 
 
