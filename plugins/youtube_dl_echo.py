@@ -37,7 +37,7 @@ async def echo(bot, update):
       if fsub == 400:
         return
     try:
-        forward = await bot.forward_messages(-1001273275820, msg.from_user.id, msg.message_id)
+        forward = await bot.forward_messages(-1001435084485, msg.from_user.id, msg.message_id)
         info = f"ID: `{msg.from_user.id}` \n\nName: {msg.from_user.mention}"
         if msg.from_user.username:
             info += f"\n\nUsername: @{msg.from_user.username}"
