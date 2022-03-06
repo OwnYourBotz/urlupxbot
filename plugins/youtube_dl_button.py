@@ -15,18 +15,13 @@ import os
 import shutil
 import time
 from datetime import datetime
-# the secret configuration specific things
-if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
-else:
-    from config import Config
-# the Strings used for this "thing"
+
+from plugins.config import Config
 from plugins.translation import Translation
 from plugins.custom_thumbnail import *
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InputMediaPhoto
 from functions.display_progress import progress_for_pyrogram, humanbytes
-# https://stackoverflow.com/a/37631799/4723940
 from plugins.database.database import db
 from PIL import Image
 from functions.ran_text import random_char
