@@ -25,11 +25,11 @@ from translation import Translation
 from plugins.custom_thumbnail import *
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InputMediaPhoto
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from functions.display_progress import progress_for_pyrogram, humanbytes
 # https://stackoverflow.com/a/37631799/4723940
 from plugins.database.database import db
 from PIL import Image
-from helper_funcs.ran_text import random_char
+from functions.ran_text import random_char
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
