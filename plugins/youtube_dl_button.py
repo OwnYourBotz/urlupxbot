@@ -38,7 +38,7 @@ from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
 from helper_funcs.ran_text import random_char
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio, InputMediaDocument
-
+from plugins.database.database import db
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
 
