@@ -87,3 +87,5 @@ async def button(bot, update):
     elif "=" in update.data:
         await ddl_call_back(bot, update)
 
+    else:
+        await update.message.delete()
