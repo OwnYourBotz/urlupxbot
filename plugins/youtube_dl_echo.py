@@ -24,11 +24,13 @@ from hachoir.parser import createParser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
 from functions.ran_text import random_char
-
+from plugins.database.add import add_user_to_database
 
 @Client.on_message(filters.private & filters.regex(pattern=".*https://.*"))
 async def echo(bot, update):
-
+    if not update.from_user:
+        return await update.reply_text("I don't know about you sar :(")
+    await add_user_to_database(bot, update)
     logger.info(update.from_user)
     url = update.text
     youtube_dl_username = None
