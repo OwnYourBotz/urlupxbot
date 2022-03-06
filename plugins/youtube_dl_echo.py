@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | X-Noid | @DC4_WARRIOR
+# (c) Shrimadhav U K | @Tellybots 
 
 # the logging things
 import logging
@@ -14,19 +14,19 @@ import time
 from translation import Translation
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import filters
-from pyrogram import Client as Clinton
+from pyrogram import Client
 
-from helper_funcs.display_progress import humanbytes
-from helper_funcs.help_uploadbot import DownLoadFile
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
+from functions.display_progress import humanbytes
+from functions.help_uploadbot import DownLoadFile
+from functions.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant
-from helper_funcs.ran_text import random_char
+from functions.ran_text import random_char
 
 
-@Clinton.on_message(filters.private & filters.regex(pattern=".*https://.*"))
+@Client.on_message(filters.private & filters.regex(pattern=".*https://.*"))
 async def echo(bot, update):
 
     logger.info(update.from_user)
