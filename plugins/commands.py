@@ -12,7 +12,7 @@ from asyncio import TimeoutError
 from pyrogram.errors import MessageNotModified
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery, ForceReply
 from sample_config import Config
-from translation import Translation
+from plugins.translation import Translation
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.database.add import add_user_to_database
