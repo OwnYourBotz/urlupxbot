@@ -54,6 +54,10 @@
     "BROADCAST_AS_COPY": {
       "description": "Value Will Be True or False",
       "value": ""
+    },
+    "BOT_USERNAME": {
+      "description": "Your Bot Username Without @",
+      "value": ""
     }
   },
   "addons": [
