@@ -241,7 +241,7 @@ async def echo(bot, update):
             if response_json["thumbnail"] is not None:
                 thumbnail = response_json["thumbnail"]
                 thumbnail_image = response_json["thumbnail"]
-        thumb_image_path = DownLoadFile(
+        thumbnail = DownLoadFile(
             thumbnail_image,
             Config.DOWNLOAD_LOCATION + "/" +
             str(update.from_user.id) + f'{randem}' + ".webp",
@@ -251,8 +251,8 @@ async def echo(bot, update):
             update.message_id,
             update.chat.id
         )
-        if os.path.exists(thumb_image_path):
-            im = Image.open(thumb_image_path).convert("RGB")
+        if os.path.exists(thumbnail):
+            im = Image.open(thumbnail).convert("RGB")
             im.save(thumb_image_path.replace(".webp", ".jpg"), "jpeg")
         else:
             thumb_image_path = None
