@@ -1,6 +1,6 @@
 # (c) @AbirHasan2005
 
-from sample_config import Config
+from plugins.config import Config
 from .database import db
 from pyrogram import Client
 from pyrogram.types import Message
