@@ -40,6 +40,3 @@
 
 ## `Bot Credit :- @ShriMadhavUk, @DkBotz`
 
-
-Dev Branch Is Only For Testing Repo So Better Don't Use Dev Branch
-
