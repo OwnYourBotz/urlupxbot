@@ -16,7 +16,7 @@ from translation import Translation
 from plugins.custom_thumbnail import *
 from plugins.database.database import db
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
+from functions.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
