@@ -1,6 +1,6 @@
 import os
 from functions.display_progress import progress_for_pyrogram, humanbytes
-from sample_config import Config
+from plugins.config import Config
 from plugins.dl_button import ddl_call_back
 from plugins.youtube_dl_button import youtube_dl_call_back
 from plugins.settings.settings import OpenSettings
