@@ -50,14 +50,13 @@
       "description": "Add It For M3u8 Link thumbnail and For default thumbnail to be used in the videos. Incase, yt-dlp is unable to find a thumbnail. If Not add M3u8 link Will Not Work",
       "value": ""
     },
-    "CHUNK_SIZE": {
-      "description": "chunk size that should be used with requests",
-      "value": "128"
+    "OWNER_ID": {
+      "description": "Your Telegram ID For Broadcast",
+      "value": "12345678"
     },
-    "HTTP_PROXY": {
-      "description": "proxy for accessing youtube-dl in GeoRestricted Areas. Get your own proxy from https://github.com/rg3/youtube-dl/issues/1091#issuecomment-230163061",
-      "value": "",
-      "required": false
+    "BROADCAST_AS_COPY": {
+      "description": "Value Will Be True or False",
+      "value": ""
     }
   },
   "addons": [
