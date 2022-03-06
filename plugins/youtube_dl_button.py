@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | Modified By > @DC4_WARRIOR
+# (c) Shrimadhav U K | @Tellybots
 
 # the logging things
 import logging
@@ -21,7 +21,7 @@ if bool(os.environ.get("WEBHOOK", False)):
 else:
     from config import Config
 # the Strings used for this "thing"
-from translation import Translation
+from plugins.translation import Translation
 from plugins.custom_thumbnail import *
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram.types import InputMediaPhoto
