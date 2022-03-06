@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
-import requests, urllib.parse, filetype, os, time, shutil, tldextract, asyncio, json, math, lk21
+import requests, urllib.parse, filetype, os, time, shutil, tldextract, asyncio, json, math
 from PIL import Image
 from plugins.config import Config
 import time
@@ -34,89 +34,7 @@ async def echo(bot, update):
     youtube_dl_username = None
     youtube_dl_password = None
     file_name = None
-    folder = f'./lk21/{update.from_user.id}/'
-    bypass = ['hxfile', 'mediafire', 'anonfiles', 'antfiles']
-    ext = tldextract.extract(url)
-    if ext.domain in bypass:
-        pablo = await update.reply_text('LK21 link detected')
-        time.sleep(2.5)
-        if os.path.isdir(folder):
-            await update.reply_text("Don't spam, wait till your previous task done.")
-            await pablo.delete()
-            return
-        os.makedirs(folder)
-        await pablo.edit_text('Downloading...')
-        bypasser = lk21.Bypass()
-        xurl = bypasser.bypass_url(url)
-        if ' | ' in url:
-            url_parts = url.split(' | ')
-            url = url_parts[0]
-            file_name = url_parts[1]
-        else:
-            if xurl.find('/'):
-                urlname = xurl.rsplit('/', 1)[1]
-            file_name = urllib.parse.unquote(urlname)
-            if '+' in file_name:
-                file_name = file_name.replace('+', ' ')
-        dldir = f'{folder}{file_name}'
-        r = requests.get(xurl, allow_redirects=True)
-        open(dldir, 'wb').write(r.content)
-        try:
-            file = filetype.guess(dldir)
-            xfiletype = file.mime
-        except AttributeError:
-            xfiletype = file_name
-        if xfiletype in ['video/mp4', 'video/x-matroska', 'video/webm', 'audio/mpeg']:
-            metadata = extractMetadata(createParser(dldir))
-            if metadata is not None:
-                if metadata.has("duration"):
-                    duration = metadata.get('duration').seconds
-        await pablo.edit_text('Uploading...')
-        start_time = time.time()
-        if xfiletype in ['video/mp4', 'video/x-matroska', 'video/webm']:
-            await bot.send_video(
-                chat_id=update.chat.id,
-                video=dldir,
-                caption=file_name,
-                duration=duration,
-                reply_to_message_id=update.message_id,
-                progress=progress_for_pyrogram,
-                progress_args=(
-                    Translation.UPLOAD_START,
-                    pablo,
-                    start_time
-                )
-            )
-        elif xfiletype == 'audio/mpeg':
-            await bot.send_audio(
-                chat_id=update.chat.id,
-                audio=dldir,
-                caption=file_name,
-                duration=duration,
-                reply_to_message_id=update.message_id,
-                progress=progress_for_pyrogram,
-                progress_args=(
-                    Translation.UPLOAD_START,
-                    pablo,
-                    start_time
-                )
-            )
-        else:
-            await bot.send_document(
-                chat_id=update.chat.id,
-                document=dldir,
-                caption=file_name,
-                reply_to_message_id=update.message_id,
-                progress=progress_for_pyrogram,
-                progress_args=(
-                    Translation.UPLOAD_START,
-                    pablo,
-                    start_time
-                )
-            )
-        await pablo.delete()
-        shutil.rmtree(folder)
-        return
+
     print(url)
     if "|" in url:
         url_parts = url.split("|")
