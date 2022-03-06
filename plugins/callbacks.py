@@ -80,7 +80,6 @@ async def button(bot, update):
         await OpenSettings(update.message)
     elif "close" in update.data:
         await update.message.delete(True)
-        await update.message.reply_to_message.delete()
 
     elif "|" in update.data:
         await youtube_dl_call_back(bot, update)
