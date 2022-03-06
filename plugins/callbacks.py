@@ -87,13 +87,13 @@ async def button(bot, update):
     elif "=" in update.data:
         await ddl_call_back(bot, update)
     elif "//" in update.data:
-        szze, ms_id = cb_data.rsplit('//')
+        szze, ms_id = update.data.rsplit('//')
         download_directory = Config.DOWNLOAD_LOCATION + "/" + str(ms_id)
         smze, vtt = 0, 0
         '''ToStr = ' •• '.join(map(str, os.listdir(download_directory)))
         await bot.send_message(chat_id = update.message.chat.id, text=ToStr)
         print(os.listdir(download_directory), "cb_buttons")
-        print('\n\n', cb_data, 'cb_buttons')'''
+        print('\n\n', update.data, 'cb_buttons')'''
         if os.path.isdir(download_directory):
           lsst=os.listdir(download_directory)
           try:
@@ -112,12 +112,12 @@ async def button(bot, update):
             '''elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
-            if smze>int(cb_data.split("//")[1])*1.2:
+            if smze>int(update.data.split("//")[1])*1.2:
                 await update.answer("Video Downloded Successfully. \n\n Now Downloading audio", show_alert="True")
              elif:
             for ele in os.scandir(download_directory):
                 smze+=os.path.getsize(ele)
-            if smze>int(cb_data.split("//")[1]):
+            if smze>int(update.data.split("//")[1]):
                 await update.answer("Video, audio downloaded sucessfully. \n\n Upload starts soon.", show_alert="True")'''
         elif len(lsst)-vtt == 4:
             await update.answer("Video & Audio downloaded sucessfully\n\nUploading starts soon. . .")
