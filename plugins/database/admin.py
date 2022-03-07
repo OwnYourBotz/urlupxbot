@@ -38,7 +38,7 @@ async def broadcast_in(_, m: Message):
     await broadcast_handler(m)
 
 @Client.on_message(filters.command("settings") & ~filters.edited)
-async def OpenSettings(bot, update):
+async def Open_Settings(bot, update):
     await OpenSettings(bot, update)
 
 
