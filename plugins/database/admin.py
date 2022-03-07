@@ -44,4 +44,4 @@ async def broadcast_in(_, m: Message):
 async def settings_handler(bot: Client, m: Message):
 
     editable = await m.reply_text("**👀 Processing....**", quote=True)
-    await OpenSettings(editable, m.from_user.id)
+    await OpenSettings(m.from_user.id)
