@@ -38,5 +38,5 @@
     <img src="https://img.shields.io/badge/Deploy%20To Heroku-purple?style=for-the-badge&logo=Heroku" alt="herokudeploy-01" border="0" height="30" width="200"></a>
 </p>
 
-## `Bot Credit :- @ShriMadhavUk, @DkBotz, @Dc4warrior`
+## `Bot Credit :- @ShriMadhavUk, @DkBotz, @Dc4warrior(For Custom Thumbnail Code)` and Abir Hassan For Database Modules
 
