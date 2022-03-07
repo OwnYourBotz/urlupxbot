@@ -27,7 +27,7 @@ from functions.ran_text import random_char
 from plugins.database.add import add_user_to_database
 from pyrogram.types import Thumbnail
 
-@Client.on_message(filters.private & filters.regex(pattern=".*https://.*"))
+@Client.on_message(filters.private & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
 
     if not update.from_user:
