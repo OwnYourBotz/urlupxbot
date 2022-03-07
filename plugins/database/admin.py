@@ -9,7 +9,7 @@ from pyrogram import Client
 from plugins.database.database import db
 from functions.display_progress import humanbytes
 from plugins.database.bcast import broadcast_handler
-
+from plugins.settings.settings import OpenSettings
 
 @Client.on_message(filters.command("status") & filters.user(Config.OWNER_ID) & ~filters.edited)
 async def status_handler(_, m: Message):
@@ -37,6 +37,9 @@ async def status_handler(_, m: Message):
 async def broadcast_in(_, m: Message):
     await broadcast_handler(m)
 
+@Client.on_message(filters.command("settings") & ~filters.edited)
+async def OpenSettings(bot, update):
+    await OpenSettings(bot)
 
 
 
