@@ -37,9 +37,11 @@ async def status_handler(_, m: Message):
 async def broadcast_in(_, m: Message):
     await broadcast_handler(m)
 
-@Client.on_message(filters.command("settings") & ~filters.edited)
-async def Open_Settings(bot, update):
-    await OpenSettings(update)
 
 
 
+@Client.on_message(filters.private & filters.command("settings"))
+async def settings_handler(bot: Client, m: Message):
+
+    editable = await m.reply_text("**👀 Processing....**", quote=True)
+    await OpenSettings(editable, m.from_user.id)
