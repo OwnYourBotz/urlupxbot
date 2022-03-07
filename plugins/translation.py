@@ -93,13 +93,10 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
     )
     BUTTONS = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='home'),
-        InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help')
-        ],[
         InlineKeyboardButton('♨️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
-
+    TEXT = "sᴇɴᴅ ᴍᴇ ᴀɴʏ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴛᴏ sᴇᴛ ɪᴛ"
     IFLONG_FILE_NAME = " Only 64 characters can be named . "
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
