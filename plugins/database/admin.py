@@ -40,8 +40,4 @@ async def broadcast_in(_, m: Message):
 
 
 
-@Client.on_message(filters.private & filters.command("settings"))
-async def settings_handler(bot: Client, m: Message):
 
-    editable = await m.reply_text("**👀 Processing....**", quote=True)
-    await OpenSettings(m.from_user.id)
