@@ -54,21 +54,11 @@ async def button(bot, update):
         await update.answer("Okay, I deleted your custom thumbnail. Now I will apply default thumbnail.", show_alert=True)
         await update.message.delete(True)
     elif update.data == "setThumbnail":
-        await update.answer()
-        await update.message.edit("Send me any photo to set that as custom thumbnail.\n\n"
-                              "Use Delete Thumbnail to Delete Thumbnail")
-        from_user_thumb: "types.Message" = await bot.listen(update.message.chat.id)
-        if not from_user_thumb.photo:
-            await update.message.edit("Process Cancelled!")
-            return await from_user_thumb.continue_propagation()
-        else:
-            await db.set_thumbnail(cb.from_user.id, from_user_thumb.photo.file_id)
-            await update.message.edit("Okay!\n"
-                                  "Now I will apply this thumbnail to next uploads.",
-                                  reply_markup=types.InlineKeyboardMarkup(
-                                      [[types.InlineKeyboardButton("Show Settings",
-                                                                   callback_data="OpenSettings")]]
-                                  ))
+        await update.message.edit_text(
+            text=Translation.TEXT,
+            reply_markup=Translation.BUTTONS,
+            disable_web_page_preview=True
+        )
 
     elif update.data == "triggerUploadMode":
         await update.answer()
