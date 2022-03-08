@@ -15,8 +15,8 @@ async def OpenSettings(m: "types.Message"):
     caption = user_data.get("caption", None)
     apply_caption = user_data.get("apply_caption", True)
     thumbnail = user_data.get("thumbnail", None)
-    generate_sample_video = user_data.get("get_generate_sample_video", False)
-    generate_ss = user_data.get("get_generate_ss", False)
+    get_generate_sample_video = user_data.get("get_generate_sample_video", False)
+    get_generate_ss = user_data.get("get_generate_ss", False)
     buttons_markup = [
         [types.InlineKeyboardButton(f"ᴜᴘʟᴏᴀᴅ ᴀs {'🎥 ᴠɪᴅᴇᴏ' if upload_as_doc else '🗃️ ғɪʟᴇ'}",
                                     callback_data="triggerUploadMode")],
