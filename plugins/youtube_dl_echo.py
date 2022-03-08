@@ -48,7 +48,7 @@ async def echo(bot, update):
     file_name = None
 
     print(url)
-    folder = f"{usr}youtube"
+    folder = f"{url}youtube"
     try:
         os.mkdir(folder)
     except:
