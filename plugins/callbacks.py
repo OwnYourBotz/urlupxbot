@@ -72,16 +72,16 @@ async def button(bot, update):
         await update.message.delete(True)
     elif update.data == "triggerGenSS":
         await update.answer()
-        get_generate_ss = await db.get_generate_ss(update.from_user.id)
-        if get_generate_ss:
+        generate_ss = await db.get_generate_ss(update.from_user.id)
+        if generate_ss:
             await db.set_generate_ss(update.from_user.id, False)
         else:
             await db.set_generate_ss(update.from_user.id, True)
         await OpenSettings(update.message)
     elif update.data == "triggerGenSample":
         await update.answer()
-        get_generate_sample_video = await db.get_generate_sample_video(update.from_user.id)
-        if get_generate_sample_video:
+        generate_sample_video = await db.get_generate_sample_video(update.from_user.id)
+        if generate_sample_video:
             await db.set_generate_sample_video(update.from_user.id, False)
         else:
             await db.set_generate_sample_video(update.from_user.id, True)
