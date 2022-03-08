@@ -238,6 +238,21 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             if (await db.get_generate_ss(update.from_user.id)) is True:
+                is_w_f = False
+                images = await generate_screen_shots(
+                    download_directory,
+                    tmp_directory_for_each_user,
+                    is_w_f,
+                    Config.DEF_WATER_MARK_FILE,
+                    300,
+                    9
+                )
+
+            await bot.edit_message_text(
+                text=Translation.UPLOAD_START,
+                chat_id=update.message.chat.id,
+                message_id=update.message.message_id
+            )
 
             if tg_send_type == "audio":
                 duration = await Mdata03(download_directory)
