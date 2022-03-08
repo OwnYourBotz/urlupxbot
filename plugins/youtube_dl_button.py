@@ -250,7 +250,7 @@ async def youtube_dl_call_back(bot, update):
             if (await db.get_generate_ss(update.from_user.id)) is True:
                 await update.message.edit("Now Generating Screenshots ...")
                 generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(update.from_user.id)}"
-                list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration)
+                list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration, no_of_photos, min_duration)
                 if list_images is None:
                     await update.message.edit("Failed to get Screenshots!")
                     await asyncio.sleep(Config.TIME_GAP)
