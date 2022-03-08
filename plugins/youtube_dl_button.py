@@ -247,9 +247,9 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             caption = f"© @{(await bot.get_me()).username}"
-            if (await db.get_generate_ss(cb.from_user.id)) is True:
+            if (await db.get_generate_ss(update.from_user.id)) is True:
                 await update.message.edit("Now Generating Screenshots ...")
-                generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(cb.from_user.id)}"
+                generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(update.from_user.id)}"
                 list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration)
                 if list_images is None:
                     await update.message.edit("Failed to get Screenshots!")
