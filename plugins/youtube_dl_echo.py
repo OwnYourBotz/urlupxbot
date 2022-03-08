@@ -53,15 +53,7 @@ async def echo(bot, update):
         os.mkdir(folder)
     except:
         pass
-    cmd = [
-        "yt-dlp",
-        "-i",
-        "-f",
-        "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",
-        "-o",
-        f"{folder}/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s",
-        f"{url}",
-    ]
+
     if "|" in url:
         url_parts = url.split("|")
         if len(url_parts) == 2:
