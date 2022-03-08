@@ -15,11 +15,13 @@ async def OpenSettings(m: "types.Message"):
     caption = user_data.get("caption", None)
     apply_caption = user_data.get("apply_caption", True)
     thumbnail = user_data.get("thumbnail", None)
+    get_generate_sample_video = user_data.get("get_generate_sample_video", False)
+    get_generate_ss = user_data.get("get_generate_ss", False)
     buttons_markup = [
         [types.InlineKeyboardButton(f"ᴜᴘʟᴏᴀᴅ ᴀs {'🎥 ᴠɪᴅᴇᴏ' if upload_as_doc else '🗃️ ғɪʟᴇ'}",
                                     callback_data="triggerUploadMode")],
-        [types.InlineKeyboardButton(f"Generate Sample Video {'✅' if (await db.get_generate_sample_video(id=user_id)) is True else '❌'}", callback_data="triggerGenSample")],
-        [types.InlineKeyboardButton(f"Generate Screenshots {'✅' if (await db.get_generate_ss(id=user_id)) is True else '❌'}", callback_data="triggerGenSS")],
+        [types.InlineKeyboardButton(f"Generate Sample Video {'✅' if get_generate_sample_video else '❌'}", callback_data="triggerGenSample")],
+        [types.InlineKeyboardButton(f"Generate Screenshots {'✅' if get_generate_ss else '❌'}", callback_data="triggerGenSS")],
         [types.InlineKeyboardButton(f"{'ᴄʜᴀɴɢᴇ' if thumbnail else '🌃 sᴇᴛ'} ᴛʜᴜᴍʙɴᴀɪʟ",
                                     callback_data="setThumbnail")]
     ]
