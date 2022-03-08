@@ -203,7 +203,6 @@ async def youtube_dl_call_back(bot, update):
                 300,
                 9
             )
-            logger.info(images)'''
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
