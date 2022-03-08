@@ -70,13 +70,14 @@ async def button(bot, update):
         await OpenSettings(update.message)
     elif "close" in update.data:
         await update.message.delete(True)
-    elif "triggerGenSS" in update.data:
+    elif update.data == "triggerGenSS":
+        await update.answer()
         generate_ss = await db.get_generate_ss(update.from_user.id)
-        if generate_ss is True:
-            await db.set_generate_ss(update.from_user.id, generate_ss=False)
-        elif generate_ss is False:
-            await db.set_generate_ss(update.from_user.id, generate_ss=True)
-        await OpenSettings(update.message, user_id=update.from_user.id)
+        if generate_ss:
+            await db.set_generate_ss(update.from_user.id, False)
+        else:
+            await db.set_generate_ss(update.from_user.id, True)
+        await OpenSettings(update.message)
     elif "triggerGenSample" in update.data:
         generate_sample_video = await db.get_generate_sample_video(update.from_user.id)
         if generate_sample_video is True:
@@ -88,6 +89,6 @@ async def button(bot, update):
         await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
         await ddl_call_back(bot, update)
-
+    
     else:
         await update.message.delete()
