@@ -192,7 +192,8 @@ async def youtube_dl_call_back(bot, update):
                 text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
                 message_id=update.message.message_id
             )
-        else:
+        if (await db.get_generate_ss(update.from_user.id)) is True:
+            await update.message.edit("Now Generating Screenshots ...")
             is_w_f = False
             '''images = await generate_screen_shots(
                 download_directory,
@@ -246,30 +247,6 @@ async def youtube_dl_call_back(bot, update):
                         start_time
                     )
                 )
-            caption = f"© @{(await bot.get_me()).username}"
-            if (await db.get_generate_ss(update.from_user.id)) is True:
-                await update.message.edit("Now Generating Screenshots ...")
-                generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(update.from_user.id)}"
-                list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration)
-                if list_images is None:
-                    await update.message.edit("Failed to get Screenshots!")
-                    await asyncio.sleep(Config.TIME_GAP)
-                else:
-                    await update.message.edit("Generated Screenshots Successfully!\nNow Uploading ...")
-                    photo_album = list()
-                    if list_images is not None:
-                        i = 0
-                        for image in list_images:
-                            if os.path.exists(str(image)):
-                                if i == 0:
-                                    photo_album.append(InputMediaPhoto(media=str(image), caption=description))
-                                else:
-                                    photo_album.append(InputMediaPhoto(media=str(image)))
-                                i += 1
-                    await bot.send_media_group(
-                        chat_id=update.from_user.id,
-                        media=photo_album
-                    )
             if tg_send_type == "audio":
                 duration = await Mdata03(download_directory)
                 thumbnail = await Gthumb01(bot, update)
