@@ -66,19 +66,7 @@ class Database:
     async def get_caption(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('caption', None)
-    async def set_generate_ss(self, id, generate_ss):
-        await self.col.update_one({'id': id}, {'$set': {'generate_ss': generate_ss}})
 
-    async def get_generate_ss(self, id):
-        user = await self.col.find_one({'id': int(id)})
-        return user.get('get_generate_ss', False)
-
-    async def set_generate_sample_video(self, id, generate_sample_video):
-        await self.col.update_one({'id': id}, {'$set': {'generate_sample_video': generate_sample_video}})
-
-    async def get_generate_sample_video(self, id):
-        user = await self.col.find_one({'id': int(id)})
-        return user.get('get_generate_sample_video', False)
 
     async def get_user_data(self, id) -> dict:
         user = await self.col.find_one({'id': int(id)})
