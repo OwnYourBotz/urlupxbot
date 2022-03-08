@@ -71,14 +71,14 @@ class Database:
 
     async def get_generate_ss(self, id):
         user = await self.col.find_one({'id': int(id)})
-        return user.get('generate_ss', False)
+        return user.get('get_generate_ss', False)
 
     async def set_generate_sample_video(self, id, generate_sample_video):
         await self.col.update_one({'id': id}, {'$set': {'generate_sample_video': generate_sample_video}})
 
     async def get_generate_sample_video(self, id):
         user = await self.col.find_one({'id': int(id)})
-        return user.get('generate_sample_video', False)
+        return user.get('get_generate_sample_video', False)
 
     async def get_user_data(self, id) -> dict:
         user = await self.col.find_one({'id': int(id)})
