@@ -15,7 +15,8 @@ import os
 import shutil
 import time
 from datetime import datetime
-
+from hachoir.metadata import extractMetadata
+from pyrogram.types import InputMediaPhoto
 from plugins.config import Config
 from plugins.translation import Translation
 from plugins.custom_thumbnail import *
@@ -194,7 +195,7 @@ async def youtube_dl_call_back(bot, update):
             )
         if (await db.get_generate_ss(update.from_user.id)) is True:
             is_w_f = False
-            '''images = await generate_screen_shots(
+            images = await generate_screen_shots(
                 download_directory,
                 tmp_directory_for_each_user,
                 is_w_f,
