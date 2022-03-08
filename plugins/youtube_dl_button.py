@@ -238,55 +238,7 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             if (await db.get_generate_ss(update.from_user.id)) is True:
-            is_w_f = False
-            images = await generate_screen_shots(
-                download_directory,
-                tmp_directory_for_each_user,
-                is_w_f,
-                Config.DEF_WATER_MARK_FILE,
-                300,
-                9
-            )
-            logger.info(images)
-            await bot.edit_message_text(
-                text=Translation.UPLOAD_START,
-                chat_id=update.message.chat.id,
-                message_id=update.message.message_id
-            )
-        else:
-                logger.info("Did this happen? :\\")
-            end_two = datetime.now()
-            time_taken_for_upload = (end_two - end_one).seconds
-            #
-            media_album_p = []
-            if images is not None:
-                i = 0
-                caption = "© @TGBotsZ"
-                if is_w_f:
-                    caption = "/upgrade to Plan D to remove the watermark\n© @AnyDLBot"
-                for image in images:
-                    if os.path.exists(str(image)):
-                        if i == 0:
-                            media_album_p.append(
-                                InputMediaPhoto(
-                                    media=image,
-                                    caption=caption,
-                                    parse_mode="html"
-                                )
-                            )
-                        else:
-                            media_album_p.append(
-                                InputMediaPhoto(
-                                    media=image
-                                )
-                            )
-                        i = i + 1
-            await bot.send_media_group(
-                chat_id=update.message.chat.id,
-                disable_notification=True,
-                reply_to_message_id=update.message.message_id,
-                media=media_album_p
-            )
+
             if tg_send_type == "audio":
                 duration = await Mdata03(download_directory)
                 thumbnail = await Gthumb01(bot, update)
