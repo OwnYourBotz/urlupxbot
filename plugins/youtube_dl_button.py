@@ -194,15 +194,30 @@ async def youtube_dl_call_back(bot, update):
                 message_id=update.message.message_id
             )
         if (await db.get_generate_ss(update.from_user.id)) is True:
-            is_w_f = False
-            images = await generate_screen_shots(
-                download_directory,
-                tmp_directory_for_each_user,
-                is_w_f,
-                Config.DEF_WATER_MARK_FILE,
-                300,
-                9
-            )
+            await update.message.edit("**Now Generating Screenshots...**")
+            generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(update.from_user.id)}"
+            list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration)
+            if list_images is None:
+                await update.message.edit("**Failed to get Screenshots!**")
+                await asyncio.sleep(Config.TIME_GAP)
+            else:
+                await update.message.edit("**Generated Screenshots Successfully!**\n**Now Uploading them...**")
+                photo_album = list()
+                if list_images is not None:
+                    i = 0
+                    for image in list_images:
+                        if os.path.exists(str(image)):
+                            if i == 0:
+                                photo_album.append(InputMediaPhoto(media=str(image), caption=description))
+                            else:
+                                photo_album.append(InputMediaPhoto(media=str(image)))
+                            i += 1
+                print(photo_album)
+                await bot.send_media_group(
+                    chat_id=update.from_user.id,
+                    media=photo_album
+                )     
+
             await bot.edit_message_text(
                 text=Translation.UPLOAD_START,
                 chat_id=update.message.chat.id,
@@ -287,36 +302,7 @@ async def youtube_dl_call_back(bot, update):
             time_taken_for_upload = (end_two - end_one).seconds
 
 
-            media_album_p = []
-            if (await db.get_generate_ss(update.from_user.id)) is True:
-                if images is not None:
-                    i = 0
-                    caption = ""
-                    if is_w_f:
-                        caption = ""
-                    for image in images:
-                        if os.path.exists(image):
-                            if i == 0:
-                                media_album_p.append(
-                                    InputMediaPhoto(
-                                        media=image,
-                                        caption=caption,
-                                        parse_mode="html"
-                                    )
-                                )
-                            else:
-                                media_album_p.append(
-                                    InputMediaPhoto(
-                                        media=image
-                                    )
-                                )
-                            i = i + 1
-                    await bot.send_media_group(
-                        chat_id=update.message.chat.id,
-                        disable_notification=True,
-                        reply_to_message_id=update.message.message_id,
-                        media=media_album_p
-                    )
+
             try:
                 shutil.rmtree(tmp_directory_for_each_user)   
             except:
