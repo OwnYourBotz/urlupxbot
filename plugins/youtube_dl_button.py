@@ -186,7 +186,66 @@ async def youtube_dl_call_back(bot, update):
         except:
             pass
 
+        if file_size > Config.TG_MAX_FILE_SIZE:
+            await bot.edit_message_text(
+                chat_id=update.message.chat.id,
+                text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
+                message_id=update.message.message_id
+            )
+        else:
+            is_w_f = False
+            '''images = await generate_screen_shots(
+                download_directory,
+                tmp_directory_for_each_user,
+                is_w_f,
+                Config.DEF_WATER_MARK_FILE,
+                300,
+                9
+            )
+            logger.info(images)'''
+            await bot.edit_message_text(
+                text=Translation.UPLOAD_START,
+                chat_id=update.message.chat.id,
+                message_id=update.message.message_id
+            )
 
+            # ref: message from @Sources_codes
+            start_time = time.time()
+            if (await db.get_upload_as_doc(update.from_user.id)) is False:
+                thumbnail = await Gthumb01(bot, update)
+                await bot.send_document(
+                    chat_id=update.message.chat.id,
+                    document=download_directory,
+                    thumb=thumbnail,
+                    caption=description,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        update.message,
+                        start_time
+                    )
+                )
+            else:
+                 width, height, duration = await Mdata01(download_directory)
+                 thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
+                 await bot.send_video(
+                    chat_id=update.message.chat.id,
+                    video=download_directory,
+                    caption=description,
+                    duration=duration,
+                    width=width,
+                    height=height,
+                    supports_streaming=True,
+                    thumb=thumb_image_path,
+                    reply_to_message_id=update.message.reply_to_message.message_id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        update.message,
+                        start_time
+                    )
+                )
             if tg_send_type == "audio":
                 duration = await Mdata03(download_directory)
                 thumbnail = await Gthumb01(bot, update)
