@@ -250,7 +250,7 @@ async def youtube_dl_call_back(bot, update):
             if (await db.get_generate_ss(cb.from_user.id)) is True:
                 await update.message.edit("Now Generating Screenshots ...")
                 generate_ss_dir = f"{Config.DOWNLOAD_LOCATION}/{str(cb.from_user.id)}"
-                list_images = await generate_screen_shots(merged_vid_path, generate_ss_dir, 9, duration)
+                list_images = await generate_screen_shots(download_directory, generate_ss_dir, 9, duration)
                 if list_images is None:
                     await update.message.edit("Failed to get Screenshots!")
                     await asyncio.sleep(Config.TIME_GAP)
@@ -275,7 +275,7 @@ async def youtube_dl_call_back(bot, update):
                 sample_vid_dir = f"{Config.DOWN_PATH}/{update.from_user.id}/"
                 ttl = int(duration*10 / 100)
                 sample_video = await cult_small_video(
-                    video_file=merged_vid_path,
+                    video_file=download_directory,
                     output_directory=sample_vid_dir,
                     start_time=ttl,
                     end_time=(ttl + 10),
@@ -309,7 +309,7 @@ async def youtube_dl_call_back(bot, update):
                             width=sam_vid_width,
                             height=sam_vid_height,
                             duration=sam_vid_duration,
-                            caption=caption,
+                            caption=description,
                             progress=progress_for_pyrogram,
                             progress_args=(
                                 "Uploading Sample Video ...",
