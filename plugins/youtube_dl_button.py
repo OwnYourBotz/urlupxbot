@@ -25,7 +25,7 @@ from functions.display_progress import progress_for_pyrogram, humanbytes
 from plugins.database.database import db
 from PIL import Image
 from functions.ran_text import random_char
-
+from functions.help_Nekmo_ffmpeg import generate_screen_shots
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
     # youtube_dl extractors
