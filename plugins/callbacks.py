@@ -78,13 +78,15 @@ async def button(bot, update):
         else:
             await db.set_generate_ss(update.from_user.id, True)
         await OpenSettings(update.message)
-    elif "triggerGenSample" in update.data:
+    elif update.data == "triggerGenSample":
+        await update.answer()
         generate_sample_video = await db.get_generate_sample_video(update.from_user.id)
-        if generate_sample_video is True:
-            await db.set_generate_sample_video(update.from_user.id, generate_sample_video=False)
-        elif generate_sample_video is False:
-            await db.set_generate_sample_video(update.from_user.id, generate_sample_video=True)
-        await OpenSettings(update.message, user_id=update.from_user.id)
+        if generate_sample_video:
+            await db.set_generate_sample_video(update.from_user.id, False)
+        else:
+            await db.set_generate_sample_video(update.from_user.id, True)
+        await OpenSettings(update.message)
+
     elif "|" in update.data:
         await youtube_dl_call_back(bot, update)
     elif "=" in update.data:
