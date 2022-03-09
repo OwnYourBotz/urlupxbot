@@ -232,7 +232,7 @@ async def youtube_dl_call_back(bot, update):
                 # resize image
                 # ref: https://t.me/PyrogramChat/44663
                 # https://stackoverflow.com/a/21669827/4723940
-                Image.open(thumb_image_path).convert(
+                Image.open(thumbnail).convert(
                     "RGB").save(thumbnail)
                 img = Image.open(thumbnail)
                 # https://stackoverflow.com/a/37631799/4723940
