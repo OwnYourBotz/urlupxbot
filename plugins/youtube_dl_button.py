@@ -19,7 +19,7 @@ from datetime import datetime
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from pyrogram.types import InputMediaPhoto
-
+from plugins.database.database import db
 from plugins.translation import Translation
 from functions.help_Nekmo_ffmpeg import generate_screen_shots
 from functions.display_progress import progress_for_pyrogram, humanbytes
