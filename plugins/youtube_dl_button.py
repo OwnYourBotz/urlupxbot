@@ -187,7 +187,12 @@ async def youtube_dl_call_back(bot, update):
                 download_directory = ownload_directory
         except:
             pass
-
+        if file_size > Config.TG_MAX_FILE_SIZE:
+            await bot.edit_message_text(
+                chat_id=update.message.chat.id,
+                text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
+                message_id=update.message.message_id
+            )
 
 
 
