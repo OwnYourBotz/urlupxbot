@@ -285,8 +285,9 @@ async def youtube_dl_call_back(bot, update):
                 logger.info("Did this happen? :\\")
             end_two = datetime.now()
             time_taken_for_upload = (end_two - end_one).seconds
-            if (await db.get_generate_ss(update.from_user.id)) is True:
+       
             media_album_p = []
+            if (await db.get_generate_ss(update.from_user.id)) is True:
             if images is not None:
                 i = 0
                 caption = "© @TGBotsZ"
