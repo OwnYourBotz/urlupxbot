@@ -16,18 +16,18 @@ import asyncio
 import requests
 
 if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
+    from plugins.config import Config
 else:
-    from config import Config
+    from plugins.config import Config
 
-from translation import Translation
+from plugins.translation import Translation
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import UserNotParticipant, UserBannedInChannel
-from database.database import *
-from helper_funcs.display_progress import humanbytes
-from helper_funcs.help_uploadbot import DownLoadFile
+
+from functions.display_progress import humanbytes
+from functions.help_uploadbot import DownLoadFile
 
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
