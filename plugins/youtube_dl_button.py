@@ -11,18 +11,18 @@ import shutil
 import time
 
 if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
+    from plugins.config import Config
 else:
-    from config import Config
+    from plugins.config import Config
 
 from datetime import datetime
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from pyrogram.types import InputMediaPhoto
 
-from translation import Translation
-from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from plugins.translation import Translation
+from functions.help_Nekmo_ffmpeg import generate_screen_shots
+from functions.display_progress import progress_for_pyrogram, humanbytes
 
 from PIL import Image
 
