@@ -18,22 +18,22 @@ from datetime import datetime
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
-    from sample_config import Config
+    from plugins.config import Config
 else:
-    from config import Config
+    from plugins.config import Config
 
 # the Strings used for this "thing"
 from translation import Translation
-
+from plugins.database.database import db
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from helper_funcs.display_progress import progress_for_pyrogram, humanbytes
+from functions.display_progress import progress_for_pyrogram, humanbytes
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
 from PIL import Image
-from helper_funcs.help_Nekmo_ffmpeg import generate_screen_shots
+from functions.help_Nekmo_ffmpeg import generate_screen_shots
 from pyrogram.types import InputMediaPhoto
 
 
@@ -113,7 +113,7 @@ async def youtube_dl_call_back(bot, update):
     command_to_exec = []
     if tg_send_type == "audio":
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--prefer-ffmpeg",
@@ -129,7 +129,7 @@ async def youtube_dl_call_back(bot, update):
         if "youtu" in youtube_dl_url:
             minus_f_format = youtube_dl_format + "+bestaudio"
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
