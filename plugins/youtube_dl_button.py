@@ -30,7 +30,7 @@ from PIL import Image
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
-    thumb_image_path = Config.DOWNLOAD_LOCATION + \
+    thumbnail = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".jpg"
 
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
@@ -210,102 +210,29 @@ async def youtube_dl_call_back(bot, update):
                     if metadata.has("duration"):
                         duration = metadata.get('duration').seconds
 
-            if os.path.exists(thumb_image_path):
+            if os.path.exists(thumbnail):
                 width = 0
                 height = 0
-                metadata = extractMetadata(createParser(thumb_image_path))
+                metadata = extractMetadata(createParser(thumbnail))
                 if metadata.has("width"):
                     width = metadata.get("width")
                 if metadata.has("height"):
                     height = metadata.get("height")
                 if tg_send_type == "vm":
                     height = width
-                Image.open(thumb_image_path).convert(
-                    "RGB").save(thumb_image_path)
-                img = Image.open(thumb_image_path)
+                Image.open(thumbnail).convert(
+                    "RGB").save(thumbnail)
+                img = Image.open(thumbnail)
                 if tg_send_type == "file":
                     img.resize((320, height))
                 else:
                     img.resize((90, height))
-                img.save(thumb_image_path, "JPEG")
+                img.save(thumbnail, "JPEG")
             else:
-                thumb_image_path = Config.DEF_THUMB_NAIL_VID_S
+                thumbnail = thumbnail 
 
             start_time = time.time()
-            if tg_send_type == "audio":
-                await update.message.reply_to_message.reply_chat_action("upload_audio")
-                await bot.send_audio(
-                    chat_id=update.message.chat.id,
-                    audio=download_directory,
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
-                    # performer=response_json["uploader"],
-                    # title=response_json["title"],
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]]),
-                    thumb=thumb_image_path,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "file":
-                await update.message.reply_to_message.reply_chat_action("upload_document")
-                await bot.send_document(
-                    chat_id=update.message.chat.id,
-                    document=download_directory,
-                    thumb=thumb_image_path,
-                    caption=description,
-                    parse_mode="HTML",
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]]),
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "vm":
-                await update.message.reply_to_message.reply_chat_action("upload_video_note")
-                
-                await bot.send_video_note(
-                    chat_id=update.message.chat.id,
-                    video_note=download_directory,
-                    duration=duration,
-                    length=width,
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
-            elif tg_send_type == "video":
-                await update.message.reply_to_message.reply_chat_action("upload_video")
-                await bot.send_video(
-                    chat_id=update.message.chat.id,
-                    video=download_directory,
-                    caption=description,
-                    parse_mode="HTML",
-                    duration=duration,
-                    width=width,
-                    height=height,
-                    supports_streaming=True,
-                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('⚙ Join Updates Channel ⚙', url='https://telegram.me/FayasNoushad')]]),
-                    thumb=thumb_image_path,
-                    reply_to_message_id=update.message.reply_to_message.message_id,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        Translation.UPLOAD_START,
-                        update.message,
-                        start_time
-                    )
-                )
+
             else:
                 logger.info("Did this happen? :\\")
             end_two = datetime.now()
@@ -350,7 +277,7 @@ async def youtube_dl_call_back(bot, update):
             except:
                 pass
             try:
-                os.remove(thumb_image_path)
+                os.remove(thumbnail)
             except:
                 pass
             await bot.edit_message_text(
