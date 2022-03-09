@@ -23,7 +23,7 @@ else:
     from plugins.config import Config
 
 # the Strings used for this "thing"
-from translation import Translation
+from plugins.translation import Translation
 from plugins.database.database import db
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
