@@ -20,11 +20,11 @@ else:
     from plugins.config import Config
 
 from plugins.translation import Translation
-
+from plugins.custom_thumbnail import *
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from functions.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
-
+from plugins.database.database import db
 
 async def ddl_call_back(bot, update):
     cb_data = update.data
