@@ -18,3 +18,4 @@ tldextract
 aiofiles
 pyromod
 lk21
+ffmpeg
