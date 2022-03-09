@@ -161,4 +161,4 @@ Free users only 1 request per 30 minutes.
     FORCE_SUBSCRIBE_TEXT = "<code>Sorry Dear You Must Join My Updates Channel for using me 😌😉....</code>"
     BANNED_USER_TEXT = "<code>You are Banned!</code>"
     CHECK_LINK = "Pʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʟɪɴᴋ ⌛"
-
+    CHECKING_LINK = "Pʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʟɪɴᴋ ⌛"
