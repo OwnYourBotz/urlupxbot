@@ -15,6 +15,7 @@ import os
 import shutil
 import time
 from datetime import datetime
+from functions.ran_text import random_char
 
 # the secret configuration specific things
 if bool(os.environ.get("WEBHOOK", False)):
