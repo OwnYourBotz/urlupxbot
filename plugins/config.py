@@ -57,3 +57,4 @@ class Config(object):
     PRO_USERS = list(set(int(x) for x in os.environ.get("PRO_USERS", "0").split()))
     PRO_USERS.append(OWNER_ID)
     BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
+    SCREENSHOTS = os.environ.get("SCREENSHOTS", "True")
