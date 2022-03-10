@@ -95,8 +95,6 @@ async def take_screen_shot(video_file, output_directory, ttl):
 # https://github.com/Nekmo/telegram-upload/blob/master/telegram_upload/video.py#L26
 
 
-
-
 async def generate_screen_shots(
     video_file,
     output_directory,
