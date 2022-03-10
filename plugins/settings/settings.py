@@ -23,7 +23,7 @@ async def OpenSettings(m: "types.Message"):
                                     #callback_data="triggerGenSample")],
         [types.InlineKeyboardButton(f"🌌 ʀᴇᴄᴇɪᴠᴇ sᴄʀᴇᴇɴsʜᴏᴛs {'On' if generate_ss else 'Off'}", 
                                     callback_data="triggerGenSS")],
-        [types.InlineKeyboardButton(f"{'ᴄʜᴀɴɢᴇ' if thumbnail else '🌃 sᴇᴛ'} ᴛʜᴜᴍʙɴᴀɪʟ",
+        [types.InlineKeyboardButton(f"{'🌀 ᴄʜᴀɴɢᴇ' if thumbnail else '🌃 sᴇᴛ'} ᴛʜᴜᴍʙɴᴀɪʟ",
                                     callback_data="setThumbnail")]
     ]
     if thumbnail:
