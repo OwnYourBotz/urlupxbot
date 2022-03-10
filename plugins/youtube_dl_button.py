@@ -25,6 +25,7 @@ from functions.display_progress import progress_for_pyrogram, humanbytes
 from plugins.database.database import db
 from PIL import Image
 from functions.ran_text import random_char
+FormtDB = {}
 
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
