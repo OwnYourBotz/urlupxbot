@@ -186,7 +186,7 @@ async def youtube_dl_call_back(bot, update):
                 message_id=update.message.message_id
             )
         else:
-            if (await db.get_generate_ss(update.from_user.id)) is True:
+            if Config.SCREENSHOTS:
                 is_w_f = False
                 images = await generate_screen_shots(
                     download_directory,
