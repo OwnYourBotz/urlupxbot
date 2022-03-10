@@ -67,6 +67,14 @@ async def button(bot, update):
         else:
             await db.set_generate_ss(update.from_user.id, True)
         await OpenSettings(update.message)
+    elif update.data == "triggerGenSample":
+        await update.answer()
+        generate_sample_video = await db.get_generate_sample_video(update.from_user.id)
+        if generate_sample_video:
+            await db.set_generate_sample_video(update.from_user.id, False)
+        else:
+            await db.set_generate_sample_video(update.from_user.id, True)
+        await OpenSettings(update.message)
 
     elif update.data == "triggerUploadMode":
         await update.answer()
