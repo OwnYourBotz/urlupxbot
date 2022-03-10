@@ -15,7 +15,7 @@ import os
 import shutil
 import time
 from datetime import datetime
-from functions.help_Nekmo_ffmpeg import generate_screen_shots
+from functions.help_Nekmo_ffmpeg import generate_screen_shots, cult_small_video
 from plugins.config import Config
 from plugins.translation import Translation
 from plugins.custom_thumbnail import *
