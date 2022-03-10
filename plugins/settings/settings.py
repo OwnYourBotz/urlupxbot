@@ -21,7 +21,7 @@ async def OpenSettings(m: "types.Message"):
                                     callback_data="triggerUploadMode")],
         #[types.InlineKeyboardButton(f"Generate Sample Video {'✅' if generate_sample_video else '❌'}", 
                                     #callback_data="triggerGenSample")],
-        [types.InlineKeyboardButton(f"🌌 ʀᴇᴄᴇɪᴠᴇ sᴄʀᴇᴇɴsʜᴏᴛs {'On' if generate_ss else 'Off'}", 
+        [types.InlineKeyboardButton(f"🌌 ʀᴇᴄᴇɪᴠᴇ sᴄʀᴇᴇɴsʜᴏᴛs {'✅' if generate_ss else '✖️'}", 
                                     callback_data="triggerGenSS")],
         [types.InlineKeyboardButton(f"{'🌀 ᴄʜᴀɴɢᴇ' if thumbnail else '🌃 sᴇᴛ'} ᴛʜᴜᴍʙɴᴀɪʟ",
                                     callback_data="setThumbnail")]
