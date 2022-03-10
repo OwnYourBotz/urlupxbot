@@ -59,6 +59,14 @@ async def button(bot, update):
             reply_markup=Translation.BUTTONS,
             disable_web_page_preview=True
         )
+    elif update.data == "triggerGenSS":
+        await update.answer()
+        generate_ss = await db.get_generate_ss(update.from_user.id)
+        if generate_ss:
+            await db.set_generate_ss(update.from_user.id, False)
+        else:
+            await db.set_generate_ss(update.from_user.id, True)
+        await OpenSettings(update.message)
 
     elif update.data == "triggerUploadMode":
         await update.answer()
