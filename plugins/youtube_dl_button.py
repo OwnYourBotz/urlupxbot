@@ -193,21 +193,66 @@ async def youtube_dl_call_back(bot, update):
                 message_id=update.message.message_id
             )
         else:
-            is_w_f = False
-            '''images = await generate_screen_shots(
-                download_directory,
-                tmp_directory_for_each_user,
-                is_w_f,
-                Config.DEF_WATER_MARK_FILE,
-                300,
-                9
-            )
-            logger.info(images)'''
-            await bot.edit_message_text(
-                text=Translation.UPLOAD_START,
-                chat_id=update.message.chat.id,
-                message_id=update.message.message_id
-            )
+            if Config.SCREENSHOTS:
+                is_w_f = False
+                images = await generate_screen_shots(
+                    download_directory,
+                    tmp_directory_for_each_user,
+                    is_w_f,
+                    Config.DEF_WATER_MARK_FILE,
+                    300,
+                    9
+                )
+            try:
+                await bot.edit_message_text(text=Translation.UPLOAD_START, chat_id=update.message.chat.id, message_id=update.message.message_id)
+            except:
+                pass
+            # get the correct width, height, and duration for videos greater than 10MB
+            width = 0
+            height = 0
+            duration = 0
+            if tg_send_type != "file":
+                metadata = extractMetadata(createParser(download_directory))
+                if metadata is not None:
+                    if metadata.has("duration"):
+                        duration = metadata.get('duration').seconds
+
+            if os.path.exists(thumbnail):
+                width = 0
+                height = 0
+                metadata = extractMetadata(createParser(thumbnail))
+                if metadata.has("width"):
+                    width = metadata.get("width")
+                if metadata.has("height"):
+                    height = metadata.get("height")
+                if tg_send_type == "vm":
+                    height = width
+                Image.open(thumbnail).convert(
+                    "RGB").save(thumbnail)
+                img = Image.open(thumbnail)
+                if tg_send_type == "file":
+                    img.resize((320, height))
+                else:
+                    img.resize((90, height))
+                img.save(thumbnail, "JPEG")
+            else:
+                thumbnail = thumbnail
+        #else:
+            #is_w_f = False
+            #'''images = await generate_screen_shots(
+                #download_directory,
+                #tmp_directory_for_each_user,
+                #is_w_f,
+                #Config.DEF_WATER_MARK_FILE,
+                #300,
+                #9
+            #)
+            #logger.info(images)'''
+            #await bot.edit_message_text(
+                #text=Translation.UPLOAD_START,
+                #chat_id=update.message.chat.id,
+                #message_id=update.message.message_id
+            #)
 
             # ref: message from @Sources_codes
             start_time = time.time()
